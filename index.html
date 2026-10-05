@@ -303,7 +303,38 @@
   .chapter-desc { font-size: 0.88rem; color: var(--ink-soft); max-width: 30ch; }
 
   .grid { display: grid; gap: clamp(0.6rem, 1.4vw, 1.1rem); }
-  .grid-reels { grid-template-columns: repeat(4, 1fr); }
+  .grid-reels {
+    --reel-gap: 1.2rem;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 3 * var(--reel-gap)) / 4);
+    gap: var(--reel-gap) !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 4px 6px 2.5rem;
+    margin: -4px -6px -2.5rem;
+  }
+  .grid-reels::-webkit-scrollbar { display: none; }
+  .grid-reels > figure { scroll-snap-align: start; }
+
+  .grid-reels .phone { box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset, 0 14px 20px -14px rgba(31,37,35,0.4); }
+
+  .reels-nav { display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1.4rem; }
+  .reels-nav button {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, opacity 0.2s;
+  }
+  .reels-nav button:hover { background: var(--ink); color: var(--bg); }
+  .reels-nav button:disabled { opacity: 0.3; cursor: default; background: transparent; color: var(--ink); }
   .grid-reels .frame-caption strong { font-size: 1.02rem; }
   .grid-broll { grid-template-columns: repeat(4, 1fr); }
   .grid-photo { grid-template-columns: repeat(3, 1fr); padding-bottom: 2.5rem; }
@@ -433,7 +464,7 @@
     grid-template-rows: auto 1fr;
   }
   .chapter-reels .chapter-meta { grid-area: meta; position: static; }
-  .chapter-reels .grid-reels { grid-area: media; }
+  .chapter-reels .reels-wrap { grid-area: media; min-width: 0; }
   .brand-aside {
     grid-area: aside;
     align-self: end;
@@ -690,9 +721,8 @@
   }
 
   @media (max-width: 560px) {
+    .reels-nav { display: none; }
     .grid-reels {
-      grid-template-columns: none;
-      grid-auto-flow: column;
       grid-auto-columns: 72%;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
@@ -818,7 +848,15 @@
         <h3 class="chapter-title">Reels</h3>
         <p class="chapter-desc">Fully edited vertical videos for villas, hotels and resorts, ready to go straight onto your Instagram, TikTok or ads.</p>
       </div>
-      <div class="grid grid-reels">
+      <div class="reels-wrap">
+      <div class="grid grid-reels" id="reels-track">
+        <figure class="reveal">
+          <div class="phone"><div class="phone-screen frame">
+            <video src="videos/reel-5.mp4" poster="videos/reel-5.jpg" muted loop playsinline autoplay preload="metadata"></video>
+            <button class="sound" type="button">Sound on</button>
+          </div></div>
+          <figcaption class="frame-caption">Hilton Hotel &nbsp;·&nbsp; Istanbul<strong>A stay at Hilton Istanbul Kozyatağı</strong></figcaption>
+        </figure>
         <figure class="reveal">
           <div class="phone"><div class="phone-screen frame">
             <video src="videos/reel-1.mp4" poster="videos/reel-1.jpg" muted loop playsinline autoplay preload="metadata"></video>
@@ -847,6 +885,11 @@
           </div></div>
           <figcaption class="frame-caption">Canggu<strong>The Canggu villa you want to stay in</strong></figcaption>
         </figure>
+      </div>
+      <div class="reels-nav">
+        <button type="button" data-dir="-1" aria-label="Previous reels">&#8592;</button>
+        <button type="button" data-dir="1" aria-label="Next reels">&#8594;</button>
+      </div>
       </div>
       <!-- BRAND / PRODUCT ASIDE. LUGGAGE: replace the phone-empty div with a <video> like the Wander Gut one (videos/brand-luggage.mp4) -->
       <aside class="brand-aside reveal" id="brands">
@@ -1016,6 +1059,22 @@
       }
     });
   });
+
+  // Reels carousel arrows
+  const track = document.getElementById('reels-track');
+  const navBtns = document.querySelectorAll('.reels-nav button');
+  const updateNav = () => {
+    navBtns[0].disabled = track.scrollLeft <= 4;
+    navBtns[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  };
+  navBtns.forEach(btn => btn.addEventListener('click', () => {
+    const card = track.querySelector('figure');
+    const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap);
+    track.scrollBy({ left: step * Number(btn.dataset.dir), behavior: 'smooth' });
+  }));
+  track.addEventListener('scroll', updateNav, { passive: true });
+  window.addEventListener('resize', updateNav);
+  updateNav();
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
