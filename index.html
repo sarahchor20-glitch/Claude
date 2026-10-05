@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visual / Abroad — UGC Travel Portfolio</title>
-<meta name="description" content="Cinematic UGC for hotels, resorts, and travel brands — delivered as a ready-to-publish package.">
+<meta name="description" content="UGC creator for Airbnbs, hotels, resorts, travel brands and airlines.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -379,134 +379,97 @@
     font-size: 0.65rem;
   }
 
-  /* ── WHAT YOU GET ── */
-  .deliverables {
-    background: #141412;
-    border-top: 1px solid rgba(201,185,154,0.08);
-  }
+  /* ── REELS & B-ROLL ── */
+  .reels { background: #141412; border-top: 1px solid rgba(201,185,154,0.08); }
+  .broll { background: var(--charcoal); }
 
-  .includes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .include {
-    padding-top: 1rem;
-    border-top: 1px solid rgba(201,185,154,0.15);
-  }
-
-  .include-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--ivory);
-    margin-bottom: 0.4rem;
-  }
-
-  .include p {
-    font-size: 0.8rem;
+  .section-intro {
+    font-size: 0.88rem;
     color: var(--muted);
     line-height: 1.7;
+    max-width: 52ch;
+    margin: -2.2rem 0 3rem;
   }
 
-  .packages-grid {
+  .video-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin-bottom: 1rem;
   }
 
-  .packages-grid .package-items { margin-bottom: 0; }
+  .video-grid.reels-grid { grid-template-columns: repeat(3, 1fr); }
+  .video-grid.broll-grid { grid-template-columns: repeat(6, 1fr); gap: 0.6rem; }
 
-  .package-card.custom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
-  .package-card.custom .package-note {
-    border-top: none;
-    padding-top: 0.4rem;
-    max-width: 56ch;
-  }
-
-  .package-card {
-    padding: 2.4rem;
-    border: 1px solid rgba(201,185,154,0.12);
+  .vid-tile {
     position: relative;
-    transition: border-color 0.3s;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 35%, rgba(74,102,112,0.35) 0%, transparent 70%),
+      linear-gradient(170deg, #1d2a2c 0%, #1a1a18 100%);
+    border: 1px solid rgba(201,185,154,0.08);
   }
 
-  .package-card:hover { border-color: rgba(212,168,83,0.35); }
-
-  .package-card.featured {
-    border-color: rgba(212,168,83,0.3);
-    background: rgba(212,168,83,0.04);
+  .broll-grid .vid-tile:nth-child(even) {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 60%, rgba(212,168,83,0.18) 0%, transparent 70%),
+      linear-gradient(170deg, #26201a 0%, #1a1a18 100%);
   }
 
-  .package-badge {
+  .vid-tile video {
     position: absolute;
-    top: -1px;
-    right: 1.6rem;
-    background: var(--gold);
-    color: var(--charcoal);
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.7rem;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .package-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: var(--ivory);
-    margin-bottom: 0.3rem;
-  }
+  /* Placeholder shows until a video src is added */
+  .vid-tile video:not([src]) { display: none; }
 
-  .package-subtitle {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-bottom: 1.6rem;
-    letter-spacing: 0.03em;
-  }
-
-  .package-items {
-    list-style: none;
+  .vid-placeholder {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .package-items li {
-    font-size: 0.82rem;
-    color: var(--sand);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    line-height: 1.5;
-  }
-
-  .package-items li::before {
-    content: '—';
-    color: var(--gold);
-    opacity: 0.6;
-    flex-shrink: 0;
-    margin-top: 0.05em;
-  }
-
-  .package-note {
-    font-size: 0.72rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
     color: var(--muted);
-    font-style: italic;
-    line-height: 1.6;
-    padding-top: 1.2rem;
-    border-top: 1px solid rgba(201,185,154,0.1);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .vid-placeholder::before {
+    content: '▶';
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(201,185,154,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--sand);
+    padding-left: 3px;
+  }
+
+  .broll-grid .vid-placeholder::before { width: 30px; height: 30px; font-size: 0.6rem; }
+
+  .vid-caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 2.5rem 1rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    pointer-events: none;
+  }
+
+  .vid-caption .dest-location { margin-bottom: 0.25rem; }
+  .vid-caption .vid-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--ivory);
   }
 
   /* ── ABOUT ── */
@@ -799,8 +762,12 @@
     .hero-title { font-size: clamp(2.8rem, 12vw, 5rem); }
     .destinations-grid { grid-template-columns: 1fr; gap: 0.75rem; }
     .dest-card:nth-child(n) { grid-column: span 1; }
-    .includes, .packages-grid, .about-layout { grid-template-columns: 1fr; gap: 1.5rem; }
-    .package-card.custom { flex-direction: column; align-items: flex-start; }
+    .about-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .video-grid.reels-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .video-grid.broll-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .vid-caption { padding: 1.5rem 0.6rem 0.6rem; }
+    .vid-caption .vid-title { font-size: 0.95rem; }
+    .section-intro { margin-top: -2rem; }
     .process-steps { grid-template-columns: 1fr 1fr; }
     .stats-inner { grid-template-columns: 1fr 1fr; }
     .scroll-hint { display: none; }
@@ -827,7 +794,8 @@
 <!--
   QUICK EDIT GUIDE
   - Email: search for "hello@youremail.com" (2 places) and replace with your address.
-  - Socials: search for "FOOTER" below. To add Substack, remove the <!-- --> around its link and set the URL.
+  - Socials: search for "FOOTER" below. To add Substack, un-comment its link and set the URL.
+  - Reels / B-roll: search for "REELS" and "B-ROLL" and add src="videos/your-file.mp4" to each <video>.
   - Work cards: search for "WORK". For each card:
       1. Upload a photo to the images/ folder (e.g. images/maldives.jpg).
       2. On that card's .dest-visual, add: style="background-image: url('images/maldives.jpg')"
@@ -840,8 +808,8 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
-    <li><a href="#deliverables">Packages</a></li>
-    <li><a href="#process">Process</a></li>
+    <li><a href="#reels">Reels</a></li>
+    <li><a href="#broll">B-Roll</a></li>
   </ul>
   <a href="#contact" class="nav-contact">Work Together</a>
 </nav>
@@ -855,10 +823,10 @@
   <div class="hero-content">
     <p class="location-tag">UGC Creator &nbsp;·&nbsp; Not an Influencer</p>
     <h1 class="hero-title">Content that <em>sells</em> the stay</h1>
-    <p class="hero-sub">Cinematic UGC for Airbnbs, hotels, resorts, travel brands and airlines — content made for <em>your</em> channels, delivered as a ready-to-publish package.</p>
+    <p class="hero-sub">Cinematic UGC for Airbnbs, hotels, resorts, travel brands and airlines — content made for <em>your</em> channels, ready to publish.</p>
     <div class="hero-cta">
       <a href="#work" class="btn-primary">View Work</a>
-      <a href="#contact" class="btn-ghost">Get a Package</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
     </div>
   </div>
 
@@ -935,7 +903,7 @@
         <div class="dest-info">
           <div class="dest-location">Indian Ocean &nbsp;·&nbsp; 2024</div>
           <div class="dest-name">Maldives<br>Overwater Villas</div>
-          <div class="dest-tag">Hotel UGC · Reel Package</div>
+          <div class="dest-tag">Hotel UGC · Reels</div>
         </div>
       </div>
     </a>
@@ -981,7 +949,7 @@
         <div class="dest-info">
           <div class="dest-location">Local &nbsp;·&nbsp; 2025</div>
           <div class="dest-name">Hometown<br>Hidden Gems</div>
-          <div class="dest-tag">Destination UGC · Full Package</div>
+          <div class="dest-tag">Destination UGC · Reels + B-Roll</div>
         </div>
       </div>
     </a>
@@ -992,54 +960,74 @@
 
 <div class="divider"></div>
 
-<!-- DELIVERABLES -->
-<section class="deliverables" id="deliverables">
-  <p class="section-label reveal">Packages</p>
-  <h2 class="section-title reveal">Every package is a <em>complete content library</em></h2>
+<!-- REELS
+     To add a reel: put the file in videos/ (e.g. videos/reel-1.mp4) and add src="videos/reel-1.mp4" to its <video>.
+     Keep each file small (ideally under 10MB, max 100MB on GitHub). -->
+<section class="reels" id="reels">
+  <p class="section-label reveal">Reels</p>
+  <h2 class="section-title reveal">Finished, <em>ready-to-post</em> reels</h2>
+  <p class="section-intro reveal">Fully edited vertical videos, ready to go straight onto your Instagram, TikTok or ads.</p>
 
-  <div class="includes reveal">
-    <div class="include">
-      <div class="include-title">Finished Reels</div>
-      <p>Fully edited, ready to post the day you receive them.</p>
+  <div class="video-grid reels-grid">
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">Reel coming soon</div>
+      <video muted loop playsinline autoplay controls preload="metadata"></video>
+      <div class="vid-caption">
+        <div class="dest-location">Hotel</div>
+        <div class="vid-title">Room Reveal</div>
+      </div>
     </div>
-    <div class="include">
-      <div class="include-title">Photos</div>
-      <p>Edited stills for your socials, website and listings.</p>
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">Reel coming soon</div>
+      <video muted loop playsinline autoplay controls preload="metadata"></video>
+      <div class="vid-caption">
+        <div class="dest-location">Airbnb</div>
+        <div class="vid-title">Arrival Story</div>
+      </div>
     </div>
-    <div class="include">
-      <div class="include-title">Vertical B-Roll</div>
-      <p>Raw vertical clips to drop into your Stories, or to cut your own TikToks and Reels from, in any video.</p>
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">Reel coming soon</div>
+      <video muted loop playsinline autoplay controls preload="metadata"></video>
+      <div class="vid-caption">
+        <div class="dest-location">Resort</div>
+        <div class="vid-title">A Day at the Pool</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="packages-grid">
-    <div class="package-card reveal">
-      <div class="package-title">Standard</div>
-      <div class="package-subtitle">A focused content drop for a single property or campaign</div>
-      <ul class="package-items">
-        <li>1 edited reel</li>
-        <li>10 photos</li>
-        <li>10 vertical B-roll shots</li>
-      </ul>
-    </div>
+<!-- B-ROLL
+     Same as reels: add src="videos/broll-1.mp4" etc. These play silently on a loop. -->
+<section class="broll" id="broll">
+  <p class="section-label reveal">B-Roll</p>
+  <h2 class="section-title reveal">Vertical clips, <em>endlessly reusable</em></h2>
+  <p class="section-intro reveal">Short vertical shots to drop into your Stories, or to cut your own TikToks and Reels from, in any video.</p>
 
-    <div class="package-card featured reveal">
-      <div class="package-title">Lux</div>
-      <div class="package-subtitle">A full content library for a launch, season or campaign</div>
-      <ul class="package-items">
-        <li>3 edited reels</li>
-        <li>25 photos</li>
-        <li>50 vertical B-roll shots</li>
-      </ul>
+  <div class="video-grid broll-grid">
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">B-Roll</div>
+      <video muted loop playsinline autoplay preload="metadata"></video>
     </div>
-  </div>
-
-  <div class="package-card custom reveal">
-    <div>
-      <div class="package-title">Need something different?</div>
-      <p class="package-note">Packages are a starting point, not a limit. Open to building a custom package around your property, campaign or budget.</p>
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">B-Roll</div>
+      <video muted loop playsinline autoplay preload="metadata"></video>
     </div>
-    <a href="#contact" class="btn-ghost">Let's Talk</a>
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">B-Roll</div>
+      <video muted loop playsinline autoplay preload="metadata"></video>
+    </div>
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">B-Roll</div>
+      <video muted loop playsinline autoplay preload="metadata"></video>
+    </div>
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">B-Roll</div>
+      <video muted loop playsinline autoplay preload="metadata"></video>
+    </div>
+    <div class="vid-tile reveal">
+      <div class="vid-placeholder">B-Roll</div>
+      <video muted loop playsinline autoplay preload="metadata"></video>
+    </div>
   </div>
 </section>
 
@@ -1078,7 +1066,7 @@
 <section class="contact" id="contact">
   <p class="contact-eyebrow reveal">Let's Work Together</p>
   <h2 class="contact-title reveal">Your property deserves to be <em>felt</em>, not just seen</h2>
-  <p class="contact-sub reveal">Whether you're an Airbnb, hotel, resort, travel brand or airline — let's talk about what a content package could look like for you.</p>
+  <p class="contact-sub reveal">Whether you're an Airbnb, hotel, resort, travel brand or airline — let's talk about what content could look like for you.</p>
   <a href="mailto:hello@youremail.com" class="contact-email reveal">hello@youremail.com</a>
   <div class="contact-cta reveal">
     <a href="mailto:hello@youremail.com" class="btn-primary">Start a Conversation</a>
