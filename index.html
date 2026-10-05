@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual / Abroad — UGC Travel Portfolio</title>
+<meta name="description" content="Cinematic UGC for hotels, resorts, and travel brands — delivered as a ready-to-publish package.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --charcoal: #1a1a18;
+    --ivory: #f5f0e8;
+    --sand: #c9b99a;
+    --slate: #4a6670;
+    --gold: #d4a853;
+    --muted: #8a8278;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--charcoal);
+    color: var(--ivory);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem 3.5rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* Layered gradient evoking water, sand, sky */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 30%, rgba(74,102,112,0.45) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(212,168,83,0.18) 0%, transparent 60%),
+      linear-gradient(175deg, #0d1f24 0%, #1a2e2e 35%, #1a1a18 100%);
+  }
+
+  /* Floating dust / grain */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+  }
+
+  /* Animated shimmer panel — evokes water */
+  .hero-shimmer {
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(135deg,
+      transparent 0%,
+      rgba(74,102,112,0.12) 30%,
+      rgba(212,168,83,0.08) 60%,
+      transparent 100%);
+    animation: shimmer 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes shimmer {
+    0%   { opacity: 0.4; transform: translateX(0) scaleY(1); }
+    100% { opacity: 0.9; transform: translateX(2%) scaleY(1.02); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .location-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .location-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--ivory);
+    max-width: 14ch;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--sand);
+  }
+
+  .hero-sub {
+    margin-top: 1.8rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    max-width: 36ch;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    margin-top: 2.4rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--sand); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.85rem 1.6rem;
+    border: 1px solid rgba(201,185,154,0.35);
+    color: var(--sand);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.25s, color 0.25s;
+  }
+
+  .btn-ghost:hover { border-color: var(--sand); color: var(--ivory); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3.5rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+  }
+
+  .scroll-hint span {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    color: var(--sand);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 3rem;
+    background: linear-gradient(to bottom, var(--sand), transparent);
+    animation: scrollline 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollline {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.1); }
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 6rem 3.5rem; }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ivory);
+    max-width: 22ch;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--sand); }
+
+  /* ── WORK / DESTINATIONS ── */
+  .work { background: var(--charcoal); }
+
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+
+  .dest-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .dest-card:nth-child(1) { grid-column: span 7; }
+  .dest-card:nth-child(2) { grid-column: span 5; }
+  .dest-card:nth-child(3) { grid-column: span 4; }
+  .dest-card:nth-child(4) { grid-column: span 8; }
+
+  .dest-card-inner {
+    position: relative;
+    width: 100%;
+    padding-top: 70%;
+    overflow: hidden;
+  }
+
+  .dest-card:nth-child(1) .dest-card-inner,
+  .dest-card:nth-child(4) .dest-card-inner { padding-top: 58%; }
+
+  .dest-visual {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  .dest-card:hover .dest-visual { transform: scale(1.04); }
+
+  /* Maldives card */
+  .dest-card:nth-child(1) .dest-visual {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 40%, rgba(74,140,160,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 80% 70%, rgba(212,168,83,0.3) 0%, transparent 50%),
+      linear-gradient(160deg, #0a2a35 0%, #0e4455 40%, #1a6070 70%, #c9b99a 100%);
+  }
+
+  /* Bali card */
+  .dest-card:nth-child(2) .dest-visual {
+    background:
+      radial-gradient(ellipse 60% 60% at 30% 30%, rgba(60,90,40,0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 70% 70%, rgba(180,130,70,0.35) 0%, transparent 60%),
+      linear-gradient(145deg, #1a2510 0%, #2d3d18 35%, #4a3820 65%, #6b4f2a 100%);
+  }
+
+  /* Hometown card 1 */
+  .dest-card:nth-child(3) .dest-visual {
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 60%, rgba(100,100,120,0.4) 0%, transparent 65%),
+      linear-gradient(150deg, #1c1c24 0%, #2a2a35 50%, #3a3045 100%);
+  }
+
+  /* Hometown card 2 */
+  .dest-card:nth-child(4) .dest-visual {
+    background:
+      radial-gradient(ellipse 50% 40% at 60% 40%, rgba(180,150,100,0.3) 0%, transparent 60%),
+      linear-gradient(160deg, #201a10 0%, #352a18 45%, #4a3c25 100%);
+  }
+
+  /* Real photo: add style="background-image: url('images/your-photo.jpg')" to a .dest-visual */
+  .dest-card .dest-visual[style*="background-image"] {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .dest-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    transition: background 0.4s;
+  }
+
+  .dest-card:hover .dest-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.08) 60%, transparent 100%);
+  }
+
+  .dest-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .dest-location {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+    opacity: 0.9;
+  }
+
+  .dest-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.1;
+  }
+
+  .dest-tag {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(212,168,83,0.18);
+    border: 1px solid rgba(212,168,83,0.3);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* Floating icons on cards */
+  .dest-icons {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .dest-icon {
+    width: 28px;
+    height: 28px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+  }
+
+  /* ── WHAT YOU GET ── */
+  .deliverables {
+    background: #141412;
+    border-top: 1px solid rgba(201,185,154,0.08);
+  }
+
+  .deliverables-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .package-card {
+    padding: 2.4rem;
+    border: 1px solid rgba(201,185,154,0.12);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .package-card:hover { border-color: rgba(212,168,83,0.35); }
+
+  .package-card.featured {
+    border-color: rgba(212,168,83,0.3);
+    background: rgba(212,168,83,0.04);
+  }
+
+  .package-badge {
+    position: absolute;
+    top: -1px;
+    right: 1.6rem;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+  }
+
+  .package-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--ivory);
+    margin-bottom: 0.3rem;
+  }
+
+  .package-subtitle {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 1.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  .package-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .package-items li {
+    font-size: 0.82rem;
+    color: var(--sand);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .package-items li::before {
+    content: '—';
+    color: var(--gold);
+    opacity: 0.6;
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+
+  .package-note {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(201,185,154,0.1);
+  }
+
+  /* ── PROCESS ── */
+  .process {
+    background: var(--charcoal);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    counter-reset: step;
+  }
+
+  .step {
+    position: relative;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201,185,154,0.15);
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: rgba(212,168,83,0.2);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-body {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── STATS BAR ── */
+  .stats {
+    background: #0f0f0e;
+    padding: 3.5rem;
+    border-top: 1px solid rgba(201,185,154,0.06);
+    border-bottom: 1px solid rgba(201,185,154,0.06);
+  }
+
+  .stats-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-value span {
+    color: var(--gold);
+    font-size: 1.8rem;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--charcoal);
+    text-align: center;
+    padding: 8rem 3.5rem;
+  }
+
+  .contact-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ivory);
+    max-width: 18ch;
+    margin: 0 auto 1.5rem;
+  }
+
+  .contact-title em { font-style: italic; color: var(--sand); }
+
+  .contact-sub {
+    font-size: 0.88rem;
+    color: var(--muted);
+    max-width: 38ch;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--sand);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,185,154,0.3);
+    padding-bottom: 0.2rem;
+    margin-bottom: 3rem;
+    transition: color 0.25s, border-color 0.25s;
+  }
+
+  .contact-email:hover { color: var(--ivory); border-color: var(--ivory); }
+
+  .contact-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.6rem 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(10,10,8,0.7) 0%, transparent 100%);
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.3s, background 0.3s;
+  }
+
+  nav.scrolled {
+    background: rgba(15,15,13,0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--ivory);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ivory); }
+
+  .nav-contact {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(212,168,83,0.35);
+    padding: 0.5rem 1.1rem;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .nav-contact:hover { background: var(--gold); color: var(--charcoal); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,185,154,0.15), transparent);
+    margin: 0 3.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(201,185,154,0.06);
+  }
+
+  footer p {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-platforms {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-platforms a {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-platforms a:hover { color: var(--sand); }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    section { padding: 4rem 1.8rem; }
+    nav { padding: 1.4rem 1.8rem; }
+    .nav-links { display: none; }
+    .hero { padding: 2rem 1.8rem; }
+    .hero-title { font-size: clamp(2.8rem, 12vw, 5rem); }
+    .destinations-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .dest-card:nth-child(n) { grid-column: span 1; }
+    .deliverables-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .scroll-hint { display: none; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .stats { padding: 3rem 1.8rem; }
+    .contact { padding: 5rem 1.8rem; }
+    .divider { margin: 0 1.8rem; }
+  }
+
+  @media (max-width: 520px) {
+    .process-steps { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .hero-cta { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-shimmer, .scroll-line { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  QUICK EDIT GUIDE
+  - Email: search for "hello@youremail.com" (2 places) and replace with your address.
+  - Socials: search for "FOOTER" below and replace each href="#" with your profile URL.
+  - Work cards: search for "WORK". For each card:
+      1. Upload a photo to the images/ folder (e.g. images/maldives.jpg).
+      2. On that card's .dest-visual, add: style="background-image: url('images/maldives.jpg')"
+      3. Replace the card's href="#" with a link to the Reel / TikTok / video.
+-->
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-brand">Visual &nbsp;/&nbsp; Abroad</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#deliverables">Packages</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <a href="#contact" class="nav-contact">Work Together</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg">
+    <div class="hero-shimmer"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="location-tag">Maldives &nbsp;·&nbsp; Bali &nbsp;·&nbsp; And Beyond</p>
+    <h1 class="hero-title">Content that <em>sells</em> the stay</h1>
+    <p class="hero-sub">Cinematic UGC for hotels, resorts, and travel brands — delivered as a ready-to-publish package, no brief required.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary">View Work</a>
+      <a href="#contact" class="btn-ghost">Get a Package</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="reveal">
+      <div class="stat-value">3<span>+</span></div>
+      <div class="stat-label">Destinations Captured</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-value">48<span>h</span></div>
+      <div class="stat-label">Average Turnaround</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-value">4<span>k</span></div>
+      <div class="stat-label">Footage Quality</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-value">∞</div>
+      <div class="stat-label">Usage Rights Included</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <p class="section-label reveal">Selected Work</p>
+  <h2 class="section-title reveal">Places we've <em>made unforgettable</em></h2>
+
+  <div class="destinations-grid">
+
+    <!-- Maldives hero card — replace href with your Reel link; add a photo via style on .dest-visual -->
+    <a class="dest-card reveal" href="#" target="_blank" rel="noopener">
+      <div class="dest-card-inner">
+        <div class="dest-visual"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-icons" aria-hidden="true">
+          <div class="dest-icon">▶</div>
+          <div class="dest-icon">⬡</div>
+        </div>
+        <div class="dest-info">
+          <div class="dest-location">Indian Ocean &nbsp;·&nbsp; 2024</div>
+          <div class="dest-name">Maldives<br>Overwater Villas</div>
+          <div class="dest-tag">Hotel UGC · Reel Package</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Bali card -->
+    <a class="dest-card reveal" href="#" target="_blank" rel="noopener">
+      <div class="dest-card-inner">
+        <div class="dest-visual"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-icons" aria-hidden="true">
+          <div class="dest-icon">▶</div>
+        </div>
+        <div class="dest-info">
+          <div class="dest-location">Indonesia &nbsp;·&nbsp; 2024</div>
+          <div class="dest-name">Bali<br>Jungle Retreat</div>
+          <div class="dest-tag">Resort UGC · Photo + Video</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Local card 1 -->
+    <a class="dest-card reveal" href="#" target="_blank" rel="noopener">
+      <div class="dest-card-inner">
+        <div class="dest-visual"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <div class="dest-location">Local &nbsp;·&nbsp; 2025</div>
+          <div class="dest-name">City<br>Boutique Stay</div>
+          <div class="dest-tag">Airbnb UGC</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Local card 2 -->
+    <a class="dest-card reveal" href="#" target="_blank" rel="noopener">
+      <div class="dest-card-inner">
+        <div class="dest-visual"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-icons" aria-hidden="true">
+          <div class="dest-icon">▶</div>
+          <div class="dest-icon">⬡</div>
+        </div>
+        <div class="dest-info">
+          <div class="dest-location">Local &nbsp;·&nbsp; 2025</div>
+          <div class="dest-name">Hometown<br>Hidden Gems</div>
+          <div class="dest-tag">Destination UGC · Full Package</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- DELIVERABLES -->
+<section class="deliverables" id="deliverables">
+  <p class="section-label reveal">What You Receive</p>
+  <h2 class="section-title reveal">Every package is a <em>complete creative asset</em></h2>
+
+  <div class="deliverables-layout">
+
+    <div>
+      <div class="package-card reveal">
+        <div class="package-title">Signature Stay</div>
+        <div class="package-subtitle">For boutique hotels, Airbnbs & guesthouses</div>
+        <ul class="package-items">
+          <li>5 short-form videos (15–30 sec), edited and captioned</li>
+          <li>1 cinematic arrival or room reveal reel (45–60 sec)</li>
+          <li>15 edited photo stills, export-ready for Instagram &amp; web</li>
+          <li>Captions and suggested hashtags for each asset</li>
+          <li>Full commercial usage rights, no expiry</li>
+        </ul>
+        <p class="package-note">Ideal for properties wanting a consistent stream of seasonal content without retaining a full production team.</p>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div class="package-card featured reveal">
+        <div class="package-badge">Most Popular</div>
+        <div class="package-title">Destination Feature</div>
+        <div class="package-subtitle">For resorts, tourism boards & experience brands</div>
+        <ul class="package-items">
+          <li>8 short-form videos across property, amenities &amp; local area</li>
+          <li>1 full cinematic brand reel (60–90 sec)</li>
+          <li>25 edited stills across interior, lifestyle &amp; landscape</li>
+          <li>Vertical &amp; horizontal cuts for all major platforms</li>
+          <li>Suggested posting schedule &amp; captions</li>
+          <li>Full commercial usage rights, perpetual</li>
+        </ul>
+        <p class="package-note">Best for brands launching a new property, running seasonal campaigns, or refreshing their visual library.</p>
+      </div>
+
+      <div class="package-card reveal">
+        <div class="package-title">Add-On</div>
+        <div class="package-subtitle">Bolt onto any package</div>
+        <ul class="package-items">
+          <li>Pinterest-optimised static pins (5 designs)</li>
+          <li>Substack long-form editorial review (800–1,200 words)</li>
+          <li>Stories pack — 6 vertical assets formatted for IG/TikTok</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <p class="section-label reveal">How It Works</p>
+  <h2 class="section-title reveal">From brief to <em>ready-to-publish</em> in days</h2>
+
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">You reach out</div>
+      <div class="step-body">Share your property, aesthetic references, and any upcoming campaign dates. No lengthy brief needed — a few sentences is enough.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">We align</div>
+      <div class="step-body">A short call or message exchange to confirm deliverables, timeline, and access logistics. Simple contract, simple invoice.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">On-location capture</div>
+      <div class="step-body">We arrive, we shoot. Every angle, every light condition. You don't need to direct — that's what you're paying us to handle.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Assets delivered</div>
+      <div class="step-body">A private Dropbox or Google Drive folder with every file, formatted per platform, within 48 hours of departure. Yours to use immediately.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="contact-eyebrow reveal">Let's Work Together</p>
+  <h2 class="contact-title reveal">Your property deserves to be <em>felt</em>, not just seen</h2>
+  <p class="contact-sub reveal">Whether you're a boutique hotel, a design Airbnb, or a travel brand — let's talk about what a content package could look like for your space.</p>
+  <a href="mailto:hello@youremail.com" class="contact-email reveal">hello@youremail.com</a>
+  <div class="contact-cta reveal">
+    <a href="mailto:hello@youremail.com" class="btn-primary">Start a Conversation</a>
+    <a href="#work" class="btn-ghost">Back to Work</a>
+  </div>
+</section>
+
+<!-- FOOTER — replace each href="#" with your profile URL -->
+<footer>
+  <p>© 2026 Visual / Abroad &nbsp;·&nbsp; UGC for Travel Brands</p>
+  <div class="footer-platforms">
+    <a href="#" target="_blank" rel="noopener">Instagram</a>
+    <a href="#" target="_blank" rel="noopener">TikTok</a>
+    <a href="#" target="_blank" rel="noopener">Pinterest</a>
+    <a href="#" target="_blank" rel="noopener">Substack</a>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Placeholder links (href="#") stay on the page instead of opening a blank tab
+  document.querySelectorAll('a[href="#"][target="_blank"]').forEach(a => {
+    a.addEventListener('click', e => e.preventDefault());
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, (i % 4) * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
