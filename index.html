@@ -272,7 +272,7 @@
   .chapter-desc { font-size: 0.88rem; color: var(--ink-soft); max-width: 30ch; }
 
   .grid { display: grid; gap: clamp(0.6rem, 1.4vw, 1.1rem); }
-  .grid-reels { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+  .grid-reels { grid-template-columns: repeat(3, 1fr); }
   .grid-broll { grid-template-columns: repeat(4, 1fr); }
   .grid-photo { grid-template-columns: repeat(3, 1fr); padding-bottom: 2.5rem; }
 
@@ -441,6 +441,18 @@
   }
 
   @media (max-width: 560px) {
+    .grid-reels {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 72%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin-right: calc(-1 * var(--gutter));
+      padding-right: var(--gutter);
+      scrollbar-width: none;
+    }
+    .grid-reels::-webkit-scrollbar { display: none; }
+    .grid-reels > figure { scroll-snap-align: start; }
     .grid-photo { grid-template-columns: repeat(2, 1fr); padding-bottom: 1.5rem; }
     .grid-photo > :nth-child(3n+2) { margin: 0; }
     .grid-photo > :nth-child(even) { margin-top: 1.5rem; margin-bottom: -1.5rem; }
@@ -547,6 +559,13 @@
             <button class="sound" type="button">Sound on</button>
           </div>
           <figcaption class="frame-caption">Casa Luma &nbsp;·&nbsp; Canggu<strong>POV: your villa has a rooftop</strong></figcaption>
+        </figure>
+        <figure class="reveal">
+          <div class="frame vertical">
+            <video src="videos/reel-3.mp4" poster="videos/reel-3.jpg" muted loop playsinline autoplay preload="metadata"></video>
+            <button class="sound" type="button">Sound on</button>
+          </div>
+          <figcaption class="frame-caption">Villa Lisa &nbsp;·&nbsp; Ubud<strong>The perfect spot for a morning dip</strong></figcaption>
         </figure>
       </div>
     </section>
