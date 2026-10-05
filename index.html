@@ -111,13 +111,13 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: 100vh;
+    min-height: min(100vh, 860px);
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
     gap: clamp(2rem, 6vw, 6rem);
-    padding-top: 7rem;
-    padding-bottom: 4rem;
+    padding-top: 6rem;
+    padding-bottom: 2.5rem;
   }
 
   .hero h1 {
@@ -197,7 +197,7 @@
   /* ── INTRO ── */
   .intro {
     text-align: center;
-    padding: clamp(5rem, 10vw, 8rem) 0;
+    padding: clamp(3.2rem, 6vw, 4.8rem) 0;
   }
 
   .intro-statement {
@@ -219,7 +219,7 @@
   }
 
   .made-for {
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -239,9 +239,9 @@
   }
 
   /* ── PORTFOLIO CHAPTERS ── */
-  .portfolio { padding: clamp(5rem, 10vw, 8rem) 0 2rem; }
+  .portfolio { padding: clamp(3.2rem, 6vw, 4.8rem) 0 1rem; }
 
-  .portfolio-head { text-align: center; margin-bottom: clamp(3rem, 7vw, 5.5rem); }
+  .portfolio-head { text-align: center; margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }
 
   .portfolio-head h2 {
     font-family: var(--serif);
@@ -256,8 +256,8 @@
   .chapter {
     display: grid;
     grid-template-columns: 260px 1fr;
-    gap: clamp(2rem, 5vw, 5rem);
-    padding: clamp(3rem, 6vw, 4.5rem) 0;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding: clamp(2rem, 4vw, 3rem) 0;
     border-top: 1px solid var(--line);
   }
 
@@ -405,26 +405,38 @@
     line-height: 1.3;
   }
 
-  .brand-note { align-self: center; padding-left: clamp(0rem, 1.5vw, 1rem); }
-
-  .brand-note-lead {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-    line-height: 1.1;
-    margin: 0.8rem 0 1rem;
+  .chapter-reels {
+    grid-template-areas: "meta media" "aside media";
+    grid-template-rows: auto 1fr;
+  }
+  .chapter-reels .chapter-meta { grid-area: meta; position: static; }
+  .chapter-reels .grid-reels { grid-area: media; }
+  .brand-aside {
+    grid-area: aside;
+    align-self: end;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
   }
 
-  .brand-note > p:not(.eyebrow):not(.brand-note-lead) { font-size: 0.85rem; color: var(--ink-soft); }
+  .brand-aside-text { font-size: 0.82rem; color: var(--ink-soft); margin: 0.6rem 0 1rem; }
 
-  .brand-note ul { list-style: none; margin-top: 1.4rem; border-top: 1px solid var(--line); }
+  .mini-phones { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; max-width: 250px; }
 
-  .brand-note li {
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--line);
+  .mini-phones figcaption {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
   }
+
+  .phone.mini { padding: 0.28rem; border-radius: 1.4rem; box-shadow: 0 12px 24px -14px rgba(31,37,35,0.45); }
+  .phone.mini .phone-screen { border-radius: 1.15rem; }
+  .phone.mini .phone-screen::before { height: 0.7rem; top: 0.4rem; }
+  .phone.mini::before, .phone.mini::after { display: none; }
+  .phone.mini .phone-empty { font-size: 0.8rem; }
+  .phone.mini .sound { font-size: 0.5rem; padding: 0.35rem 0.55rem; bottom: 0.6rem; right: 50%; transform: translateX(50%); }
 
   .sound {
     position: absolute;
@@ -446,10 +458,10 @@
 
   /* ── PROCESS ── */
   .process {
-    padding: clamp(5rem, 10vw, 7.5rem) 0;
+    padding: clamp(3.2rem, 6vw, 4.5rem) 0;
   }
 
-  .process-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+  .process-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
 
   .process-head h2 {
     font-family: var(--serif);
@@ -479,7 +491,7 @@
   .step p:not(.step-num) { font-size: 0.85rem; color: var(--ink-soft); }
 
   /* ── CONTACT ── */
-  .contact { text-align: center; padding: clamp(6rem, 12vw, 9rem) 0; }
+  .contact { text-align: center; padding: clamp(3.5rem, 7vw, 5rem) 0; }
 
   .contact h2 {
     font-family: var(--serif);
@@ -528,7 +540,11 @@
     .hero { grid-template-columns: 1fr; padding-top: 6.5rem; min-height: auto; }
     .hero-media { justify-self: center; max-width: 340px; }
     .hero-note { left: -1rem; }
-    .chapter { grid-template-columns: 1fr; gap: 1.8rem; }
+    .chapter { grid-template-columns: 1fr; gap: 1.4rem; }
+    .chapter-reels { grid-template-areas: "meta" "media" "aside"; grid-template-rows: none; }
+    .brand-aside { display: grid; grid-template-columns: 1fr 180px; gap: 0 1.2rem; align-items: center; }
+    .brand-aside .eyebrow, .brand-aside-text { grid-column: 1; }
+    .brand-aside .mini-phones { grid-column: 2; grid-row: 1 / span 2; }
     .chapter-meta { position: static; }
     .chapter-desc { max-width: 46ch; }
     .grid-broll { grid-template-columns: repeat(2, 1fr); }
@@ -549,19 +565,7 @@
     }
     .grid-reels::-webkit-scrollbar { display: none; }
     .grid-reels > figure { scroll-snap-align: start; }
-    .grid-brand {
-      grid-auto-flow: row;
-      grid-template-columns: 1fr 1fr;
-      overflow: visible;
-      margin: 0;
-      padding: 0;
-      gap: 1rem;
-    }
-    .grid-brand .brand-note { grid-column: 1 / -1; padding: 1rem 0 0; }
-    .grid-brand .frame-caption strong { font-size: 1rem; }
-    .grid-brand .phone { border-radius: 1.9rem; padding: 0.35rem; }
-    .grid-brand .phone-screen { border-radius: 1.6rem; }
-    .grid-brand .phone-screen::before { height: 1rem; top: 0.5rem; }
+
     .phone { box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset, 0 10px 18px -12px rgba(31,37,35,0.35); }
     .grid-photo { grid-template-columns: repeat(2, 1fr); padding-bottom: 1.5rem; }
     .grid-photo > :nth-child(3n+2) { margin: 0; }
@@ -596,7 +600,6 @@
     <a href="#top" class="brand">By Sez</a>
     <ul class="nav-links">
       <li><a href="#reels">Reels</a></li>
-      <li><a href="#brands">Brands</a></li>
       <li><a href="#broll">B-Roll</a></li>
       <li><a href="#photography">Photography</a></li>
       <li><a href="#process">Process</a></li>
@@ -651,10 +654,10 @@
     </div>
 
     <!-- REELS -->
-    <section class="chapter" id="reels">
+    <section class="chapter chapter-reels" id="reels">
       <div class="chapter-meta reveal">
         <p class="chapter-num">01</p>
-        <h3 class="chapter-title">Hospitality Reels</h3>
+        <h3 class="chapter-title">Reels</h3>
         <p class="chapter-desc">Fully edited vertical videos for villas, hotels and resorts, ready to go straight onto your Instagram, TikTok or ads.</p>
       </div>
       <div class="grid grid-reels">
@@ -680,49 +683,32 @@
           <figcaption class="frame-caption">Villa Lisa &nbsp;·&nbsp; Ubud<strong>The perfect spot for a morning dip</strong></figcaption>
         </figure>
       </div>
-    </section>
-
-    <!-- BRAND CONTENT -->
-    <section class="chapter" id="brands">
-      <div class="chapter-meta reveal">
-        <p class="chapter-num">02</p>
-        <h3 class="chapter-title">Brand Content</h3>
-        <p class="chapter-desc">Product-led UGC for brands in and beyond the travel niche. Send your product with me and I'll capture it in real travel and lifestyle moments.</p>
-      </div>
-      <div class="grid grid-reels grid-brand">
-        <figure class="reveal">
-          <div class="phone"><div class="phone-screen frame">
-            <video src="videos/brand-wandergut.mp4" poster="videos/brand-wandergut.jpg" muted loop playsinline autoplay preload="metadata"></video>
-            <button class="sound" type="button">Sound on</button>
-          </div></div>
-          <figcaption class="frame-caption">Wander Gut &nbsp;·&nbsp; Travel Probiotic<strong>Bali Belly, packed and on the road</strong></figcaption>
-        </figure>
-        <!-- LUGGAGE: replace the phone-empty div with a video like the one above (videos/brand-luggage.mp4) -->
-        <figure class="reveal">
-          <div class="phone"><div class="phone-screen frame">
-            <div class="phone-empty">Luggage brand<br>coming soon</div>
-          </div></div>
-          <figcaption class="frame-caption">Luggage<strong>Travel-day content</strong></figcaption>
-        </figure>
-        <div class="brand-note reveal">
-          <p class="eyebrow">Your product, on the road</p>
-          <p class="brand-note-lead">I'll take it with me.</p>
-          <p>From airport lounges and long-haul flights to hotel rooms, beach days and everyday routines, your product is shown being used the way real customers use it.</p>
-          <ul>
-            <li>Travel essentials &amp; accessories</li>
-            <li>Wellness &amp; supplements</li>
-            <li>Beauty &amp; skincare</li>
-            <li>Fashion &amp; luggage</li>
-            <li>Lifestyle &amp; home</li>
-          </ul>
+      <!-- BRAND / PRODUCT ASIDE. LUGGAGE: replace the phone-empty div with a <video> like the Wander Gut one (videos/brand-luggage.mp4) -->
+      <aside class="brand-aside reveal" id="brands">
+        <p class="eyebrow">Product brands too</p>
+        <p class="brand-aside-text">Send your product with me and I'll capture it in real travel and lifestyle moments, in and beyond the travel niche.</p>
+        <div class="mini-phones">
+          <figure>
+            <div class="phone mini"><div class="phone-screen frame">
+              <video src="videos/brand-wandergut.mp4" poster="videos/brand-wandergut.jpg" muted loop playsinline autoplay preload="metadata"></video>
+              <button class="sound" type="button">Sound on</button>
+            </div></div>
+            <figcaption>Wander Gut</figcaption>
+          </figure>
+          <figure>
+            <div class="phone mini"><div class="phone-screen frame">
+              <div class="phone-empty">Coming soon</div>
+            </div></div>
+            <figcaption>Luggage</figcaption>
+          </figure>
         </div>
-      </div>
+      </aside>
     </section>
 
     <!-- B-ROLL -->
     <section class="chapter" id="broll">
       <div class="chapter-meta reveal">
-        <p class="chapter-num">03</p>
+        <p class="chapter-num">02</p>
         <h3 class="chapter-title">Vertical B&#8209;Roll</h3>
         <p class="chapter-desc">Short vertical clips to drop into your Stories, or to cut your own TikToks and Reels from, in any video.</p>
       </div>
@@ -737,7 +723,7 @@
     <!-- PHOTOGRAPHY: add src="images/photo-1.jpg" etc. to each img -->
     <section class="chapter" id="photography">
       <div class="chapter-meta reveal">
-        <p class="chapter-num">04</p>
+        <p class="chapter-num">03</p>
         <h3 class="chapter-title">Photography</h3>
         <p class="chapter-desc">Edited stills for your socials, website and listings: interiors, details and the moments in between.</p>
       </div>
