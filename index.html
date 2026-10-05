@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>By Sez — UGC for Travel &amp; Hospitality</title>
-<meta name="description" content="By Sez — UGC creator for Airbnbs, hotels, resorts, travel brands and airlines. Reels, vertical B-roll and photography made for your channels.">
+<meta name="description" content="By Sez — UGC creator for Airbnbs, hotels, resorts, airlines and product brands. Reels, vertical B-roll and photography made for your channels.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -389,6 +389,43 @@
   .grid-reels .frame-caption { margin-top: 1.4rem; text-align: center; }
   .grid-reels .sound { right: 50%; transform: translateX(50%); bottom: 1.4rem; }
 
+  .phone-empty {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(170deg, #24433f 0%, #13201e 100%);
+    color: rgba(243,241,234,0.7);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .brand-note { align-self: center; padding-left: clamp(0rem, 1.5vw, 1rem); }
+
+  .brand-note-lead {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    line-height: 1.1;
+    margin: 0.8rem 0 1rem;
+  }
+
+  .brand-note > p:not(.eyebrow):not(.brand-note-lead) { font-size: 0.85rem; color: var(--ink-soft); }
+
+  .brand-note ul { list-style: none; margin-top: 1.4rem; border-top: 1px solid var(--line); }
+
+  .brand-note li {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
   .sound {
     position: absolute;
     right: 0.8rem;
@@ -404,6 +441,7 @@
     text-transform: uppercase;
     padding: 0.5rem 0.8rem;
     border-radius: 999px;
+    white-space: nowrap;
   }
 
   /* ── PROCESS ── */
@@ -511,6 +549,19 @@
     }
     .grid-reels::-webkit-scrollbar { display: none; }
     .grid-reels > figure { scroll-snap-align: start; }
+    .grid-brand {
+      grid-auto-flow: row;
+      grid-template-columns: 1fr 1fr;
+      overflow: visible;
+      margin: 0;
+      padding: 0;
+      gap: 1rem;
+    }
+    .grid-brand .brand-note { grid-column: 1 / -1; padding: 1rem 0 0; }
+    .grid-brand .frame-caption strong { font-size: 1rem; }
+    .grid-brand .phone { border-radius: 1.9rem; padding: 0.35rem; }
+    .grid-brand .phone-screen { border-radius: 1.6rem; }
+    .grid-brand .phone-screen::before { height: 1rem; top: 0.5rem; }
     .phone { box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset, 0 10px 18px -12px rgba(31,37,35,0.35); }
     .grid-photo { grid-template-columns: repeat(2, 1fr); padding-bottom: 1.5rem; }
     .grid-photo > :nth-child(3n+2) { margin: 0; }
@@ -545,6 +596,7 @@
     <a href="#top" class="brand">By Sez</a>
     <ul class="nav-links">
       <li><a href="#reels">Reels</a></li>
+      <li><a href="#brands">Brands</a></li>
       <li><a href="#broll">B-Roll</a></li>
       <li><a href="#photography">Photography</a></li>
       <li><a href="#process">Process</a></li>
@@ -556,9 +608,9 @@
 <!-- HERO -->
 <header class="wrap hero" id="top">
   <div>
-    <p class="eyebrow reveal">UGC Creator &nbsp;·&nbsp; Travel &amp; Hospitality</p>
+    <p class="eyebrow reveal">UGC Creator &nbsp;·&nbsp; Travel, Hospitality &amp; Lifestyle</p>
     <h1 class="reveal">Content that <em>sells</em> the stay</h1>
-    <p class="hero-sub reveal">Reels, vertical B-roll and photography for Airbnbs, hotels, resorts, travel brands and airlines, made for <em>your</em> channels and ready to publish.</p>
+    <p class="hero-sub reveal">Reels, vertical B-roll and photography for Airbnbs, hotels, resorts, airlines and product brands, made for <em>your</em> channels and ready to publish.</p>
     <div class="hero-actions reveal">
       <a href="#reels" class="btn btn-solid">View Portfolio</a>
       <a href="#contact" class="btn btn-line">Work Together</a>
@@ -578,13 +630,14 @@
   <div class="wrap">
     <p class="eyebrow reveal">UGC, Not Influencer Marketing</p>
     <p class="intro-statement reveal">You're investing in <em>content</em>, not in someone else's audience.</p>
-    <p class="intro-body reveal">By Sez creates user-generated content: authentic, scroll-stopping videos and photographs made for you to publish on your own Instagram, TikTok, website and ads. No follower counts, no posting to my feed, no reach guarantees. Just a library of beautiful content that makes people want to book.</p>
+    <p class="intro-body reveal">By Sez creates user-generated content: authentic, scroll-stopping videos and photographs made for you to publish on your own Instagram, TikTok, website and ads. No follower counts, no posting to my feed, no reach guarantees. Just a library of beautiful content that makes people want to book, or buy.</p>
     <ul class="made-for reveal">
       <li>Airbnbs</li>
       <li>Hotels</li>
       <li>Resorts</li>
       <li>Travel Brands</li>
       <li>Airlines</li>
+      <li>Product Brands</li>
     </ul>
   </div>
 </section>
@@ -601,8 +654,8 @@
     <section class="chapter" id="reels">
       <div class="chapter-meta reveal">
         <p class="chapter-num">01</p>
-        <h3 class="chapter-title">Reels</h3>
-        <p class="chapter-desc">Fully edited vertical videos, ready to go straight onto your Instagram, TikTok or ads.</p>
+        <h3 class="chapter-title">Hospitality Reels</h3>
+        <p class="chapter-desc">Fully edited vertical videos for villas, hotels and resorts, ready to go straight onto your Instagram, TikTok or ads.</p>
       </div>
       <div class="grid grid-reels">
         <figure class="reveal">
@@ -629,10 +682,47 @@
       </div>
     </section>
 
+    <!-- BRAND CONTENT -->
+    <section class="chapter" id="brands">
+      <div class="chapter-meta reveal">
+        <p class="chapter-num">02</p>
+        <h3 class="chapter-title">Brand Content</h3>
+        <p class="chapter-desc">Product-led UGC for brands in and beyond the travel niche. Send your product with me and I'll capture it in real travel and lifestyle moments.</p>
+      </div>
+      <div class="grid grid-reels grid-brand">
+        <figure class="reveal">
+          <div class="phone"><div class="phone-screen frame">
+            <video src="videos/brand-wandergut.mp4" poster="videos/brand-wandergut.jpg" muted loop playsinline autoplay preload="metadata"></video>
+            <button class="sound" type="button">Sound on</button>
+          </div></div>
+          <figcaption class="frame-caption">Wander Gut &nbsp;·&nbsp; Travel Probiotic<strong>Bali Belly, packed and on the road</strong></figcaption>
+        </figure>
+        <!-- LUGGAGE: replace the phone-empty div with a video like the one above (videos/brand-luggage.mp4) -->
+        <figure class="reveal">
+          <div class="phone"><div class="phone-screen frame">
+            <div class="phone-empty">Luggage brand<br>coming soon</div>
+          </div></div>
+          <figcaption class="frame-caption">Luggage<strong>Travel-day content</strong></figcaption>
+        </figure>
+        <div class="brand-note reveal">
+          <p class="eyebrow">Your product, on the road</p>
+          <p class="brand-note-lead">I'll take it with me.</p>
+          <p>From airport lounges and long-haul flights to hotel rooms, beach days and everyday routines, your product is shown being used the way real customers use it.</p>
+          <ul>
+            <li>Travel essentials &amp; accessories</li>
+            <li>Wellness &amp; supplements</li>
+            <li>Beauty &amp; skincare</li>
+            <li>Fashion &amp; luggage</li>
+            <li>Lifestyle &amp; home</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- B-ROLL -->
     <section class="chapter" id="broll">
       <div class="chapter-meta reveal">
-        <p class="chapter-num">02</p>
+        <p class="chapter-num">03</p>
         <h3 class="chapter-title">Vertical B&#8209;Roll</h3>
         <p class="chapter-desc">Short vertical clips to drop into your Stories, or to cut your own TikToks and Reels from, in any video.</p>
       </div>
@@ -647,7 +737,7 @@
     <!-- PHOTOGRAPHY: add src="images/photo-1.jpg" etc. to each img -->
     <section class="chapter" id="photography">
       <div class="chapter-meta reveal">
-        <p class="chapter-num">03</p>
+        <p class="chapter-num">04</p>
         <h3 class="chapter-title">Photography</h3>
         <p class="chapter-desc">Edited stills for your socials, website and listings: interiors, details and the moments in between.</p>
       </div>
@@ -707,8 +797,8 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <p class="eyebrow reveal">Let's Work Together</p>
-    <h2 class="reveal">Your property deserves to be <em>felt</em>, not just seen</h2>
-    <p class="contact-sub reveal">Whether you're an Airbnb, hotel, resort, travel brand or airline, let's talk about what content could look like for you.</p>
+    <h2 class="reveal">Your brand deserves to be <em>felt</em>, not just seen</h2>
+    <p class="contact-sub reveal">Whether you're an Airbnb, hotel, resort, airline or a product brand looking for travel and lifestyle content, let's talk about what it could look like for you.</p>
     <div class="contact-links reveal">
       <a href="mailto:hello@youremail.com" class="btn btn-solid">Email Me</a>
       <a href="https://www.tiktok.com/@bysez.ugc" target="_blank" rel="noopener" class="btn btn-line">TikTok @bysez.ugc</a>
