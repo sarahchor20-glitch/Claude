@@ -135,6 +135,8 @@
     line-height: 1.7;
   }
 
+  .hero-sub em { color: var(--sand); }
+
   .hero-cta {
     margin-top: 2.4rem;
     display: flex;
@@ -383,11 +385,52 @@
     border-top: 1px solid rgba(201,185,154,0.08);
   }
 
-  .deliverables-layout {
+  .includes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .include {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201,185,154,0.15);
+  }
+
+  .include-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 0.4rem;
+  }
+
+  .include p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .packages-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .packages-grid .package-items { margin-bottom: 0; }
+
+  .package-card.custom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .package-card.custom .package-note {
+    border-top: none;
+    padding-top: 0.4rem;
+    max-width: 56ch;
   }
 
   .package-card {
@@ -464,6 +507,44 @@
     line-height: 1.6;
     padding-top: 1.2rem;
     border-top: 1px solid rgba(201,185,154,0.1);
+  }
+
+  /* ── ABOUT ── */
+  .about { background: #141412; }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-copy p {
+    font-size: 0.95rem;
+    color: var(--sand);
+    line-height: 1.8;
+    max-width: 52ch;
+  }
+
+  .about-copy p + p { margin-top: 1.2rem; color: var(--muted); }
+
+  .about-list-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .about-list ul { list-style: none; }
+
+  .about-list li {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--ivory);
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(201,185,154,0.1);
   }
 
   /* ── PROCESS ── */
@@ -718,7 +799,8 @@
     .hero-title { font-size: clamp(2.8rem, 12vw, 5rem); }
     .destinations-grid { grid-template-columns: 1fr; gap: 0.75rem; }
     .dest-card:nth-child(n) { grid-column: span 1; }
-    .deliverables-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .includes, .packages-grid, .about-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .package-card.custom { flex-direction: column; align-items: flex-start; }
     .process-steps { grid-template-columns: 1fr 1fr; }
     .stats-inner { grid-template-columns: 1fr 1fr; }
     .scroll-hint { display: none; }
@@ -745,7 +827,7 @@
 <!--
   QUICK EDIT GUIDE
   - Email: search for "hello@youremail.com" (2 places) and replace with your address.
-  - Socials: search for "FOOTER" below and replace each href="#" with your profile URL.
+  - Socials: search for "FOOTER" below. To add Substack, remove the <!-- --> around its link and set the URL.
   - Work cards: search for "WORK". For each card:
       1. Upload a photo to the images/ folder (e.g. images/maldives.jpg).
       2. On that card's .dest-visual, add: style="background-image: url('images/maldives.jpg')"
@@ -756,6 +838,7 @@
 <nav id="nav">
   <a href="#" class="nav-brand">Visual &nbsp;/&nbsp; Abroad</a>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#deliverables">Packages</a></li>
     <li><a href="#process">Process</a></li>
@@ -770,9 +853,9 @@
   </div>
 
   <div class="hero-content">
-    <p class="location-tag">Maldives &nbsp;·&nbsp; Bali &nbsp;·&nbsp; And Beyond</p>
+    <p class="location-tag">UGC Creator &nbsp;·&nbsp; Not an Influencer</p>
     <h1 class="hero-title">Content that <em>sells</em> the stay</h1>
-    <p class="hero-sub">Cinematic UGC for hotels, resorts, and travel brands — delivered as a ready-to-publish package, no brief required.</p>
+    <p class="hero-sub">Cinematic UGC for Airbnbs, hotels, resorts, travel brands and airlines — content made for <em>your</em> channels, delivered as a ready-to-publish package.</p>
     <div class="hero-cta">
       <a href="#work" class="btn-primary">View Work</a>
       <a href="#contact" class="btn-ghost">Get a Package</a>
@@ -789,8 +872,8 @@
 <div class="stats">
   <div class="stats-inner">
     <div class="reveal">
-      <div class="stat-value">3<span>+</span></div>
-      <div class="stat-label">Destinations Captured</div>
+      <div class="stat-value">3</div>
+      <div class="stat-label">Reels · Photos · B-Roll</div>
     </div>
     <div class="reveal">
       <div class="stat-value">48<span>h</span></div>
@@ -806,6 +889,32 @@
     </div>
   </div>
 </div>
+
+<!-- ABOUT / NOT AN INFLUENCER -->
+<section class="about" id="about">
+  <p class="section-label reveal">UGC, Not Influencer Marketing</p>
+  <h2 class="section-title reveal">You're paying for <em>content</em>, not for followers</h2>
+
+  <div class="about-layout">
+    <div class="about-copy reveal">
+      <p>This isn't influencer marketing, and it isn't a post to someone else's audience. It's user-generated content: authentic, scroll-stopping videos and photos made for you to publish on your own Instagram, TikTok, website and ads.</p>
+      <p>No follower counts to negotiate, no posting on my feed, no reach guarantees. Just a library of on-brand content that makes people want to book.</p>
+    </div>
+
+    <div class="about-list reveal">
+      <p class="about-list-label">Made for</p>
+      <ul>
+        <li>Airbnbs &amp; short-term rentals</li>
+        <li>Hotels</li>
+        <li>Resorts</li>
+        <li>Travel brands</li>
+        <li>Airlines</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <!-- WORK -->
 <section class="work" id="work">
@@ -885,53 +994,52 @@
 
 <!-- DELIVERABLES -->
 <section class="deliverables" id="deliverables">
-  <p class="section-label reveal">What You Receive</p>
-  <h2 class="section-title reveal">Every package is a <em>complete creative asset</em></h2>
+  <p class="section-label reveal">Packages</p>
+  <h2 class="section-title reveal">Every package is a <em>complete content library</em></h2>
 
-  <div class="deliverables-layout">
+  <div class="includes reveal">
+    <div class="include">
+      <div class="include-title">Finished Reels</div>
+      <p>Fully edited, ready to post the day you receive them.</p>
+    </div>
+    <div class="include">
+      <div class="include-title">Photos</div>
+      <p>Edited stills for your socials, website and listings.</p>
+    </div>
+    <div class="include">
+      <div class="include-title">Vertical B-Roll</div>
+      <p>Raw vertical clips to drop into your Stories, or to cut your own TikToks and Reels from, in any video.</p>
+    </div>
+  </div>
 
+  <div class="packages-grid">
+    <div class="package-card reveal">
+      <div class="package-title">Standard</div>
+      <div class="package-subtitle">A focused content drop for a single property or campaign</div>
+      <ul class="package-items">
+        <li>1 edited reel</li>
+        <li>10 photos</li>
+        <li>10 vertical B-roll shots</li>
+      </ul>
+    </div>
+
+    <div class="package-card featured reveal">
+      <div class="package-title">Lux</div>
+      <div class="package-subtitle">A full content library for a launch, season or campaign</div>
+      <ul class="package-items">
+        <li>3 edited reels</li>
+        <li>25 photos</li>
+        <li>50 vertical B-roll shots</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="package-card custom reveal">
     <div>
-      <div class="package-card reveal">
-        <div class="package-title">Signature Stay</div>
-        <div class="package-subtitle">For boutique hotels, Airbnbs & guesthouses</div>
-        <ul class="package-items">
-          <li>5 short-form videos (15–30 sec), edited and captioned</li>
-          <li>1 cinematic arrival or room reveal reel (45–60 sec)</li>
-          <li>15 edited photo stills, export-ready for Instagram &amp; web</li>
-          <li>Captions and suggested hashtags for each asset</li>
-          <li>Full commercial usage rights, no expiry</li>
-        </ul>
-        <p class="package-note">Ideal for properties wanting a consistent stream of seasonal content without retaining a full production team.</p>
-      </div>
+      <div class="package-title">Need something different?</div>
+      <p class="package-note">Packages are a starting point, not a limit. Open to building a custom package around your property, campaign or budget.</p>
     </div>
-
-    <div style="display: flex; flex-direction: column; gap: 1rem;">
-      <div class="package-card featured reveal">
-        <div class="package-badge">Most Popular</div>
-        <div class="package-title">Destination Feature</div>
-        <div class="package-subtitle">For resorts, tourism boards & experience brands</div>
-        <ul class="package-items">
-          <li>8 short-form videos across property, amenities &amp; local area</li>
-          <li>1 full cinematic brand reel (60–90 sec)</li>
-          <li>25 edited stills across interior, lifestyle &amp; landscape</li>
-          <li>Vertical &amp; horizontal cuts for all major platforms</li>
-          <li>Suggested posting schedule &amp; captions</li>
-          <li>Full commercial usage rights, perpetual</li>
-        </ul>
-        <p class="package-note">Best for brands launching a new property, running seasonal campaigns, or refreshing their visual library.</p>
-      </div>
-
-      <div class="package-card reveal">
-        <div class="package-title">Add-On</div>
-        <div class="package-subtitle">Bolt onto any package</div>
-        <ul class="package-items">
-          <li>Pinterest-optimised static pins (5 designs)</li>
-          <li>Substack long-form editorial review (800–1,200 words)</li>
-          <li>Stories pack — 6 vertical assets formatted for IG/TikTok</li>
-        </ul>
-      </div>
-    </div>
-
+    <a href="#contact" class="btn-ghost">Let's Talk</a>
   </div>
 </section>
 
@@ -970,7 +1078,7 @@
 <section class="contact" id="contact">
   <p class="contact-eyebrow reveal">Let's Work Together</p>
   <h2 class="contact-title reveal">Your property deserves to be <em>felt</em>, not just seen</h2>
-  <p class="contact-sub reveal">Whether you're a boutique hotel, a design Airbnb, or a travel brand — let's talk about what a content package could look like for your space.</p>
+  <p class="contact-sub reveal">Whether you're an Airbnb, hotel, resort, travel brand or airline — let's talk about what a content package could look like for you.</p>
   <a href="mailto:hello@youremail.com" class="contact-email reveal">hello@youremail.com</a>
   <div class="contact-cta reveal">
     <a href="mailto:hello@youremail.com" class="btn-primary">Start a Conversation</a>
@@ -978,14 +1086,12 @@
   </div>
 </section>
 
-<!-- FOOTER — replace each href="#" with your profile URL -->
+<!-- FOOTER -->
 <footer>
   <p>© 2026 Visual / Abroad &nbsp;·&nbsp; UGC for Travel Brands</p>
   <div class="footer-platforms">
-    <a href="#" target="_blank" rel="noopener">Instagram</a>
-    <a href="#" target="_blank" rel="noopener">TikTok</a>
-    <a href="#" target="_blank" rel="noopener">Pinterest</a>
-    <a href="#" target="_blank" rel="noopener">Substack</a>
+    <a href="https://www.tiktok.com/@bysez.ugc" target="_blank" rel="noopener">TikTok &nbsp;@bysez.ugc</a>
+    <!-- <a href="https://YOURNAME.substack.com" target="_blank" rel="noopener">Substack</a> -->
   </div>
 </footer>
 
