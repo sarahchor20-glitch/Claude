@@ -457,6 +457,115 @@
     white-space: nowrap;
   }
 
+  /* ── ABOUT ── */
+  .about { padding: clamp(3.2rem, 6vw, 4.8rem) 0; border-top: 1px solid var(--line); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  .about-photo { position: relative; max-width: 440px; }
+
+  .about-photo img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .about-photo::after {
+    content: '';
+    position: absolute;
+    inset: 1.2rem -1.2rem -1.2rem 1.2rem;
+    border: 1px solid var(--accent);
+    opacity: 0.5;
+  }
+
+  .about h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    line-height: 1;
+    margin: 1rem 0 1.6rem;
+  }
+
+  .about h2 em { color: var(--accent); }
+
+  .about-copy p { color: var(--ink-soft); font-size: 0.95rem; max-width: 56ch; }
+  .about-copy p + p { margin-top: 1rem; }
+  .about-copy p.eyebrow { color: var(--accent); font-size: 0.66rem; }
+  .about-copy .lead { font-family: var(--serif); font-size: 1.35rem; line-height: 1.4; color: var(--ink); }
+
+  .about-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .about-pillars div { border-top: 1px solid var(--line); padding-top: 0.9rem; }
+  .about-pillars strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; }
+  .about-pillars span { font-size: 0.78rem; color: var(--ink-soft); }
+
+  /* ── REVIEWS ── */
+  .reviews { background: #eceee9; padding: clamp(3.2rem, 6vw, 4.8rem) 0; }
+
+  .reviews-head { text-align: center; margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }
+
+  .reviews-head h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    line-height: 1.05;
+    margin-top: 1rem;
+  }
+
+  .reviews-head h2 em { color: var(--accent); }
+
+  .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+
+  .review {
+    background: var(--bg);
+    padding: 2rem 1.8rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review::before {
+    content: '\201C';
+    font-family: var(--serif);
+    font-size: 3.4rem;
+    line-height: 0.6;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .review blockquote {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .review figcaption {
+    margin-top: 1.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .review figcaption strong { display: block; color: var(--ink); font-weight: 500; margin-bottom: 0.2rem; }
+
+  .review.placeholder blockquote { color: rgba(31,37,35,0.45); font-style: italic; }
+
   /* ── PROCESS ── */
   .process {
     padding: clamp(3.2rem, 6vw, 4.5rem) 0;
@@ -537,6 +646,9 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 960px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-photo { max-width: 320px; margin: 0 auto 1rem; }
+    .review-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .hero { grid-template-columns: 1fr; padding-top: 6.5rem; min-height: auto; }
     .hero-media { justify-self: center; max-width: 340px; }
@@ -572,6 +684,7 @@
     .grid-photo > :nth-child(3n+2) { margin: 0; }
     .grid-photo > :nth-child(even) { margin-top: 1.5rem; margin-bottom: -1.5rem; }
     .steps { grid-template-columns: 1fr; }
+    .about-pillars { grid-template-columns: 1fr; gap: 0.8rem; }
     .made-for { gap: 0.4rem 1.4rem; }
     .made-for li + li::before { display: none; }
     .footer-inner { flex-direction: column; text-align: center; }
@@ -600,10 +713,11 @@
   <div class="wrap nav-inner">
     <a href="#top" class="brand">By Sez</a>
     <ul class="nav-links">
+      <li><a href="#about-sez">About</a></li>
       <li><a href="#reels">Reels</a></li>
       <li><a href="#broll">B-Roll</a></li>
       <li><a href="#photography">Photography</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="#reviews">Reviews</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Enquire</a>
   </div>
@@ -628,6 +742,27 @@
     <p class="hero-note"><span>Not an influencer</span>Content, not followers.</p>
   </div>
 </header>
+
+<!-- ABOUT -->
+<section class="about" id="about-sez">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <img src="images/sez.jpg" alt="Sez sitting on a timber deck over the ocean at sunset">
+    </div>
+    <div class="about-copy">
+      <p class="eyebrow reveal">About</p>
+      <h2 class="reveal">Meet <em>Sez</em></h2>
+      <p class="lead reveal">I'm an avid traveller who loves to explore in comfort, and I create content that makes people want to do the same.</p>
+      <p class="reveal">I've also worked as a social media manager and SEO specialist. So I don't just capture beautiful content. I know what potential guests search for, what stops their scroll and what they need to see before they book.</p>
+      <p class="reveal">My job is to give you content you can use everywhere: your socials, ads, website and listings. Not content that dies out in a couple of weeks, but a content library you can come back to and reuse whenever you need it.</p>
+      <div class="about-pillars reveal">
+        <div><strong>Traveller</strong><span>An eye for what makes a stay feel special</span></div>
+        <div><strong>Social Strategist</strong><span>Content built to perform, not just look good</span></div>
+        <div><strong>SEO Specialist</strong><span>Know-how on what guests search for</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- INTRO -->
 <section class="intro dark" id="about">
@@ -746,6 +881,30 @@
     </section>
   </div>
 </main>
+
+<!-- REVIEWS: replace each placeholder with a real quote, name and property/brand, and remove class="placeholder" -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="reviews-head">
+      <p class="eyebrow reveal">Reviews</p>
+      <h2 class="reveal">Kind <em>words</em></h2>
+    </div>
+    <div class="review-grid">
+      <figure class="review placeholder reveal">
+        <blockquote>Client review coming soon.</blockquote>
+        <figcaption><strong>Client name</strong>Property or brand</figcaption>
+      </figure>
+      <figure class="review placeholder reveal">
+        <blockquote>Client review coming soon.</blockquote>
+        <figcaption><strong>Client name</strong>Property or brand</figcaption>
+      </figure>
+      <figure class="review placeholder reveal">
+        <blockquote>Client review coming soon.</blockquote>
+        <figcaption><strong>Client name</strong>Property or brand</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
 <!-- PROCESS -->
 <section class="process dark" id="process">
