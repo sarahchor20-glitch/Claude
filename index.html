@@ -12,16 +12,26 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #f7f3ed;
-    --bg-alt: #efe8de;
-    --ink: #2a2622;
-    --ink-soft: #6b6259;
-    --accent: #8a6a44;
-    --line: rgba(42,38,34,0.14);
-    --tile: #e6ddd0;
+    --bg: #f6f6f3;
+    --ink: #1f2523;
+    --ink-soft: #5c6461;
+    --accent: #a85a36;
+    --line: rgba(31,37,35,0.14);
+    --tile: #e4e7e2;
+    --deep: #1d3a36;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
     --gutter: clamp(1.25rem, 5vw, 5rem);
+  }
+
+  /* Deep green sections: same tokens, flipped */
+  .dark {
+    --ink: #f3f1ea;
+    --ink-soft: #b9c6c1;
+    --accent: #e3a77e;
+    --line: rgba(243,241,234,0.18);
+    background: var(--deep);
+    color: var(--ink);
   }
 
   html { scroll-behavior: smooth; }
@@ -59,7 +69,7 @@
   }
 
   nav.scrolled {
-    background: rgba(247,243,237,0.92);
+    background: rgba(246,246,243,0.92);
     backdrop-filter: blur(10px);
     box-shadow: 0 1px 0 var(--line);
   }
@@ -167,7 +177,7 @@
     bottom: 2.5rem;
     background: var(--bg);
     padding: 1rem 1.3rem;
-    box-shadow: 0 10px 30px rgba(42,38,34,0.08);
+    box-shadow: 0 10px 30px rgba(31,37,35,0.1);
     font-family: var(--serif);
     font-size: 1.05rem;
     font-style: italic;
@@ -186,7 +196,6 @@
 
   /* ── INTRO ── */
   .intro {
-    background: var(--bg-alt);
     text-align: center;
     padding: clamp(5rem, 10vw, 8rem) 0;
   }
@@ -309,7 +318,7 @@
     font-family: var(--serif);
     font-style: italic;
     font-size: 1rem;
-    color: rgba(42,38,34,0.38);
+    color: rgba(31,37,35,0.38);
   }
 
   .frame-caption {
@@ -338,7 +347,7 @@
     z-index: 2;
     border: 0;
     cursor: pointer;
-    background: rgba(247,243,237,0.9);
+    background: rgba(246,246,243,0.92);
     color: var(--ink);
     font-family: var(--sans);
     font-size: 0.6rem;
@@ -350,7 +359,6 @@
 
   /* ── PROCESS ── */
   .process {
-    background: var(--bg-alt);
     padding: clamp(5rem, 10vw, 7.5rem) 0;
   }
 
@@ -515,7 +523,7 @@
 </header>
 
 <!-- INTRO -->
-<section class="intro" id="about">
+<section class="intro dark" id="about">
   <div class="wrap">
     <p class="eyebrow reveal">UGC, Not Influencer Marketing</p>
     <p class="intro-statement reveal">You're investing in <em>content</em>, not in someone else's audience.</p>
@@ -605,7 +613,7 @@
 </main>
 
 <!-- PROCESS -->
-<section class="process" id="process">
+<section class="process dark" id="process">
   <div class="wrap">
     <div class="process-head">
       <div>
@@ -658,7 +666,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer class="dark">
   <div class="wrap footer-inner">
     <span>© 2026 By Sez &nbsp;·&nbsp; UGC for Travel &amp; Hospitality</span>
     <span>
