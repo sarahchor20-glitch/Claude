@@ -111,14 +111,39 @@
 
   /* ── HERO ── */
   .hero {
-    min-height: min(100vh, 860px);
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    position: relative;
+    min-height: min(100vh, 880px);
+    display: flex;
     align-items: center;
-    gap: clamp(2rem, 6vw, 6rem);
-    padding-top: 6rem;
-    padding-bottom: 2.5rem;
+    overflow: hidden;
+    background: var(--deep);
+    padding: 8rem 0 9rem;
   }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+  }
+
+  /* Darkens the left side and the edges so the text stays readable over any frame */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(14,24,22,0.78) 0%, rgba(14,24,22,0.5) 45%, rgba(14,24,22,0.12) 100%),
+      linear-gradient(0deg, rgba(14,24,22,0.45) 0%, transparent 35%),
+      linear-gradient(180deg, rgba(14,24,22,0.45) 0%, transparent 25%);
+  }
+
+  .hero-content { position: relative; z-index: 1; width: 100%; color: #f6f4ee; }
+  .hero-content > div { max-width: 640px; }
+
+  .hero .eyebrow { color: #e9b48c; }
 
   .hero h1 {
     font-family: var(--serif);
@@ -127,17 +152,53 @@
     line-height: 0.98;
     letter-spacing: -0.01em;
     margin: 1.4rem 0 1.8rem;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.25);
   }
 
-  .hero h1 em { color: var(--accent); }
+  .hero h1 em { color: #e9b48c; }
 
   .hero-sub {
-    font-size: 1rem;
-    color: var(--ink-soft);
-    max-width: 40ch;
+    font-size: 1.02rem;
+    color: rgba(246,244,238,0.88);
+    max-width: 42ch;
   }
 
   .hero-actions { margin-top: 2.6rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+  .hero .btn-solid { background: #f6f4ee; color: var(--ink); border-color: #f6f4ee; }
+  .hero .btn-solid:hover { background: transparent; color: #f6f4ee; }
+  .hero .btn-line { color: #f6f4ee; border-color: rgba(246,244,238,0.7); }
+  .hero .btn-line:hover { background: #f6f4ee; color: var(--ink); }
+
+  .hero-note {
+    position: absolute;
+    right: var(--gutter);
+    bottom: 9.5rem;
+    z-index: 1;
+    background: rgba(246,246,243,0.94);
+    color: var(--ink);
+    padding: 1rem 1.3rem;
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-style: italic;
+  }
+
+  .hero-note span {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+
+  /* Nav sits on the video until scrolled */
+  nav:not(.scrolled) .brand,
+  nav:not(.scrolled) .nav-cta { color: #f6f4ee; border-color: #f6f4ee; }
+  nav:not(.scrolled) .nav-links a { color: rgba(246,244,238,0.82); }
+  nav:not(.scrolled) .nav-links a:hover { color: #fff; }
 
   .btn {
     display: inline-block;
@@ -154,45 +215,6 @@
   .btn-solid { background: var(--ink); color: var(--bg); }
   .btn-solid:hover { background: transparent; color: var(--ink); }
   .btn-line:hover { background: var(--ink); color: var(--bg); }
-
-  .hero-media {
-    position: relative;
-    justify-self: end;
-    width: 100%;
-    max-width: 420px;
-  }
-
-  .arch {
-    aspect-ratio: 9 / 15;
-    border-radius: 999px 999px 0 0;
-    overflow: hidden;
-    background: var(--tile);
-  }
-
-  .arch video { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  .hero-note {
-    position: absolute;
-    left: -2.5rem;
-    bottom: 2.5rem;
-    background: var(--bg);
-    padding: 1rem 1.3rem;
-    box-shadow: 0 10px 30px rgba(31,37,35,0.1);
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    font-style: italic;
-  }
-
-  .hero-note span {
-    display: block;
-    font-family: var(--sans);
-    font-style: normal;
-    font-size: 0.6rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.2rem;
-  }
 
   /* ── INTRO ── */
   .intro {
@@ -458,7 +480,8 @@
   }
 
   /* ── ABOUT ── */
-  .about { padding: clamp(3.2rem, 6vw, 4.8rem) 0; border-top: 1px solid var(--line); }
+  .about { position: relative; padding: 0 0 clamp(3.2rem, 6vw, 4.8rem); }
+  .about-copy { padding-top: clamp(2.5rem, 5vw, 4rem); }
 
   .about-grid {
     display: grid;
@@ -467,23 +490,22 @@
     align-items: center;
   }
 
-  .about-photo { position: relative; max-width: 440px; }
+  .about-photo {
+    position: relative;
+    z-index: 2;
+    max-width: 420px;
+    margin-top: -11rem;
+    align-self: start;
+  }
 
   .about-photo img {
-    position: relative;
-    z-index: 1;
     display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
-  }
-
-  .about-photo::after {
-    content: '';
-    position: absolute;
-    inset: 1.2rem -1.2rem -1.2rem 1.2rem;
-    border: 1px solid var(--accent);
-    opacity: 0.5;
+    border-radius: 999px 999px 0 0;
+    border: 8px solid var(--bg);
+    box-shadow: 0 30px 60px -25px rgba(31,37,35,0.45);
   }
 
   .about h2 {
@@ -647,12 +669,13 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 960px) {
     .about-grid { grid-template-columns: 1fr; }
-    .about-photo { max-width: 320px; margin: 0 auto 1rem; }
+    .about-photo { max-width: 300px; margin: -6rem auto 0; }
+    .about-copy { padding-top: 1.5rem; }
     .review-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding-top: 6.5rem; min-height: auto; }
-    .hero-media { justify-self: center; max-width: 340px; }
-    .hero-note { left: -1rem; }
+    .hero { min-height: 92vh; padding: 7rem 0 8rem; }
+    .hero::after { background: linear-gradient(0deg, rgba(14,24,22,0.82) 0%, rgba(14,24,22,0.55) 55%, rgba(14,24,22,0.35) 100%); }
+    .hero-note { display: none; }
     .chapter { grid-template-columns: 1fr; gap: 1.4rem; }
     .chapter-reels { grid-template-areas: "meta" "media" "aside"; grid-template-rows: none; }
     .brand-aside { display: grid; grid-template-columns: 1fr 180px; gap: 0 1.2rem; align-items: center; }
@@ -688,7 +711,6 @@
     .made-for { gap: 0.4rem 1.4rem; }
     .made-for li + li::before { display: none; }
     .footer-inner { flex-direction: column; text-align: center; }
-    .hero-note { left: 0; bottom: 1.5rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -724,23 +746,20 @@
 </nav>
 
 <!-- HERO -->
-<header class="wrap hero" id="top">
-  <div>
-    <p class="eyebrow reveal">UGC Creator &nbsp;·&nbsp; Travel, Hospitality &amp; Lifestyle</p>
-    <h1 class="reveal">Content that <em>sells</em> the stay</h1>
-    <p class="hero-sub reveal">Reels, vertical B-roll and photography for Airbnbs, hotels, resorts, airlines and product brands, made for <em>your</em> channels and ready to publish.</p>
-    <div class="hero-actions reveal">
-      <a href="#reels" class="btn btn-solid">View Portfolio</a>
-      <a href="#contact" class="btn btn-line">Work Together</a>
+<header class="hero" id="top">
+  <video class="hero-bg" src="videos/broll-4.mp4" poster="videos/broll-4.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
+  <div class="wrap hero-content">
+    <div>
+      <p class="eyebrow reveal">UGC Creator &nbsp;·&nbsp; Travel, Hospitality &amp; Lifestyle</p>
+      <h1 class="reveal">Content that <em>sells</em> the stay</h1>
+      <p class="hero-sub reveal">Reels, vertical B-roll and photography for Airbnbs, hotels, resorts, airlines and product brands, made for <em>your</em> channels and ready to publish.</p>
+      <div class="hero-actions reveal">
+        <a href="#reels" class="btn btn-solid">View Portfolio</a>
+        <a href="#contact" class="btn btn-line">Work Together</a>
+      </div>
     </div>
   </div>
-
-  <div class="hero-media reveal">
-    <div class="arch">
-      <video src="videos/broll-4.mp4" poster="videos/broll-4.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Villa and pool"></video>
-    </div>
-    <p class="hero-note"><span>Not an influencer</span>Content, not followers.</p>
-  </div>
+  <p class="hero-note reveal"><span>Not an influencer</span>Content, not followers.</p>
 </header>
 
 <!-- ABOUT -->
