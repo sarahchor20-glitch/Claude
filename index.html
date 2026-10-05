@@ -281,7 +281,8 @@
   .chapter-desc { font-size: 0.88rem; color: var(--ink-soft); max-width: 30ch; }
 
   .grid { display: grid; gap: clamp(0.6rem, 1.4vw, 1.1rem); }
-  .grid-reels { grid-template-columns: repeat(3, 1fr); }
+  .grid-reels { grid-template-columns: repeat(4, 1fr); }
+  .grid-reels .frame-caption strong { font-size: 1.02rem; }
   .grid-broll { grid-template-columns: repeat(4, 1fr); }
   .grid-photo { grid-template-columns: repeat(3, 1fr); padding-bottom: 2.5rem; }
 
@@ -341,7 +342,7 @@
   }
 
   /* Phone mockup for reels */
-  .grid-reels { gap: clamp(1rem, 3vw, 2.5rem); }
+  .grid-reels { gap: clamp(0.9rem, 2vw, 1.6rem); }
 
   .phone {
     position: relative;
@@ -681,6 +682,13 @@
             <button class="sound" type="button">Sound on</button>
           </div></div>
           <figcaption class="frame-caption">Villa Lisa &nbsp;·&nbsp; Ubud<strong>The perfect spot for a morning dip</strong></figcaption>
+        </figure>
+        <figure class="reveal">
+          <div class="phone"><div class="phone-screen frame">
+            <video src="videos/reel-4.mp4" poster="videos/reel-4.jpg" muted loop playsinline autoplay preload="metadata"></video>
+            <button class="sound" type="button">Sound on</button>
+          </div></div>
+          <figcaption class="frame-caption">Canggu<strong>The Canggu villa you want to stay in</strong></figcaption>
         </figure>
       </div>
       <!-- BRAND / PRODUCT ASIDE. LUGGAGE: replace the phone-empty div with a <video> like the Wander Gut one (videos/brand-luggage.mp4) -->
