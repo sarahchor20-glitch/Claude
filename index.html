@@ -594,6 +594,68 @@
   .about-pillars strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; }
   .about-pillars span { font-size: 0.78rem; color: var(--ink-soft); }
 
+  /* ── FAQS ── */
+  .faq { padding: clamp(3.2rem, 6vw, 4.8rem) 0; border-top: 1px solid var(--line); }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .faq-intro { position: sticky; top: 7rem; }
+  .faq-intro h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    line-height: 1.05;
+    margin: 1rem 0 1rem;
+  }
+  .faq-intro h2 em { color: var(--accent); }
+  .faq-intro > p:not(.eyebrow) { color: var(--ink-soft); font-size: 0.92rem; max-width: 34ch; margin-bottom: 1.8rem; }
+
+  .faq-list { border-top: 1px solid var(--line); }
+
+  .faq-item { border-bottom: 1px solid var(--line); }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.3rem 0;
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    line-height: 1.25;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--accent);
+    transition: transform 0.3s, background 0.2s;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item summary:hover::after { background: var(--line); }
+  .faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+  .faq-answer { padding: 0 3.5rem 1.4rem 0; color: var(--ink-soft); font-size: 0.92rem; }
+  .faq-answer p + p, .faq-answer ul + p { margin-top: 0.7rem; }
+  .faq-answer ul { margin: 0.6rem 0 0 1.1rem; }
+  .faq-answer li { margin-top: 0.3rem; }
+
   /* ── PROCESS ── */
   .process {
     padding: clamp(3.2rem, 6vw, 4.5rem) 0;
@@ -708,6 +770,8 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 960px) {
+    .faq-grid { grid-template-columns: 1fr; }
+    .faq-intro { position: static; }
     .about-grid { grid-template-columns: 1fr; }
     .about-photo { max-width: 300px; margin: -6rem auto 0; }
     .about-copy { padding-top: 1.5rem; }
@@ -751,6 +815,7 @@
     .grid-photo > :nth-child(even) { margin-top: 1.5rem; margin-bottom: -1.5rem; }
     .steps { grid-template-columns: 1fr; }
     .about-pillars { grid-template-columns: 1fr; gap: 0.8rem; }
+    .faq-answer { padding-right: 0; }
     .made-for { gap: 0.4rem 1.4rem; }
     .made-for li + li::before { display: none; }
     .footer-inner { flex-direction: column; text-align: center; }
@@ -782,6 +847,7 @@
       <li><a href="#reels">Reels</a></li>
       <li><a href="#broll">B-Roll</a></li>
       <li><a href="#photography">Photography</a></li>
+      <li><a href="#faqs">FAQs</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Enquire</a>
   </div>
@@ -978,6 +1044,52 @@
     </section>
   </div>
 </main>
+
+<!-- FAQS -->
+<section class="faq" id="faqs">
+  <div class="wrap faq-grid">
+    <div class="faq-intro reveal">
+      <p class="eyebrow">FAQs</p>
+      <h2>Questions, <em>answered</em></h2>
+      <p>Everything you need to know before we work together. Can't see your question? Just ask.</p>
+      <a href="#contact" class="btn btn-line">Get in Touch</a>
+    </div>
+    <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>How does it work?</summary>
+          <div class="faq-answer"><p>It's simple. You get in touch with a few details about your property or product and any upcoming dates. We have a quick call or message exchange to agree on the content, timeline and access. I shoot on location, then deliver everything to a shared folder, edited and ready to use.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What will I receive?</summary>
+          <div class="faq-answer"><p>A complete content library, including:</p><ul><li>Finished, fully edited reels, in trending formats and classic, timeless styles</li><li>A library of vertical B-roll for your Stories, or to create your own Reels and TikToks</li><li>Edited photographs for your socials, website and listings</li></ul><p>Everything is organised in a Google Drive or Dropbox folder and formatted for each platform.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I be involved in the creative?</summary>
+          <div class="faq-answer"><p>Absolutely. You can share mood boards, brand guidelines, must-have shots, features you'd like highlighted or campaigns you're planning, and I'll build the shoot around them. If you'd rather leave it with me, that's fine too. Knowing what guests want to see is part of the job.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Will you post the content on your own accounts?</summary>
+          <div class="faq-answer"><p>No. This is user-generated content, not influencer marketing. The content is made for you to publish on your own Instagram, TikTok, website, ads and booking platforms.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How can I use the content?</summary>
+          <div class="faq-answer"><p>Usage rights are included, so you can use the content across your social media, paid ads, website, listings and booking platforms. We'll confirm the details in your agreement before the shoot.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How long until I receive everything?</summary>
+          <div class="faq-answer"><p>Your content is delivered within 48 hours of the shoot, ready to post straight away.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>I'm a product brand, not a property. Can we still work together?</summary>
+          <div class="faq-answer"><p>Yes. Send your product with me and I'll capture it in real travel and lifestyle moments, from airports and flights to hotel rooms, poolside and everyday routines. Brands in and beyond the travel niche are welcome.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How much does it cost?</summary>
+          <div class="faq-answer"><p>Every project is different, so I put together a quote based on what you need, how much content you'd like and where the shoot is. Get in touch and I'll send you options.</p></div>
+        </details>
+    </div>
+  </div>
+</section>
 
 
 <!-- PROCESS -->
