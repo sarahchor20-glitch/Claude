@@ -336,7 +336,20 @@
   .reels-nav button:hover { background: var(--ink); color: var(--bg); }
   .reels-nav button:disabled { opacity: 0.3; cursor: default; background: transparent; color: var(--ink); }
   .grid-reels .frame-caption strong { font-size: 1.02rem; }
-  .grid-broll { grid-template-columns: repeat(4, 1fr); }
+  .carousel-wrap { min-width: 0; }
+  .grid-broll {
+    --broll-gap: 0.8rem;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 3 * var(--broll-gap)) / 4);
+    gap: var(--broll-gap) !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  .grid-broll::-webkit-scrollbar { display: none; }
+  .grid-broll > .frame { scroll-snap-align: start; }
   .grid-photo { grid-template-columns: repeat(3, 1fr); padding-bottom: 2.5rem; }
 
   .frame {
@@ -741,7 +754,7 @@
     .brand-aside .mini-phones { grid-column: 2; grid-row: 1 / span 2; }
     .chapter-meta { position: static; }
     .chapter-desc { max-width: 46ch; }
-    .grid-broll { grid-template-columns: repeat(2, 1fr); }
+    .grid-broll { grid-auto-columns: calc((100% - var(--broll-gap)) / 2); }
     .steps { grid-template-columns: 1fr 1fr; }
   }
 
@@ -918,7 +931,7 @@
           <figcaption class="frame-caption">Canggu</figcaption>
         </figure>
       </div>
-      <div class="reels-nav">
+      <div class="reels-nav" data-track="reels-track">
         <button type="button" data-dir="-1" aria-label="Previous reels">&#8592;</button>
         <button type="button" data-dir="1" aria-label="Next reels">&#8594;</button>
       </div>
@@ -952,11 +965,22 @@
         <h3 class="chapter-title">Vertical B&#8209;Roll</h3>
         <p class="chapter-desc">Short vertical clips to drop into your Stories, or to cut your own TikToks and Reels from, in any video.</p>
       </div>
-      <div class="grid grid-broll">
+      <div class="carousel-wrap">
+      <div class="grid grid-broll" id="broll-track">
         <div class="frame vertical reveal"><video src="videos/broll-1.mp4" poster="videos/broll-1.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="frame vertical reveal"><video src="videos/broll-5.mp4" poster="videos/broll-5.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
         <div class="frame vertical reveal"><video src="videos/broll-2.mp4" poster="videos/broll-2.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="frame vertical reveal"><video src="videos/broll-6.mp4" poster="videos/broll-6.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="frame vertical reveal"><video src="videos/broll-7.mp4" poster="videos/broll-7.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
         <div class="frame vertical reveal"><video src="videos/broll-3.mp4" poster="videos/broll-3.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="frame vertical reveal"><video src="videos/broll-8.mp4" poster="videos/broll-8.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
         <div class="frame vertical reveal"><video src="videos/broll-4.mp4" poster="videos/broll-4.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+        <div class="frame vertical reveal"><video src="videos/broll-9.mp4" poster="videos/broll-9.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+      </div>
+      <div class="reels-nav" data-track="broll-track">
+        <button type="button" data-dir="-1" aria-label="Previous clips">&#8592;</button>
+        <button type="button" data-dir="1" aria-label="Next clips">&#8594;</button>
+      </div>
       </div>
     </section>
 
@@ -1097,21 +1121,23 @@
     });
   });
 
-  // Reels carousel arrows
-  const track = document.getElementById('reels-track');
-  const navBtns = document.querySelectorAll('.reels-nav button');
-  const updateNav = () => {
-    navBtns[0].disabled = track.scrollLeft <= 4;
-    navBtns[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-  };
-  navBtns.forEach(btn => btn.addEventListener('click', () => {
-    const card = track.querySelector('figure');
-    const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap);
-    track.scrollBy({ left: step * Number(btn.dataset.dir), behavior: 'smooth' });
-  }));
-  track.addEventListener('scroll', updateNav, { passive: true });
-  window.addEventListener('resize', updateNav);
-  updateNav();
+  // Carousel arrows (reels and B-roll)
+  document.querySelectorAll('.reels-nav').forEach(nav => {
+    const track = document.getElementById(nav.dataset.track);
+    const btns = nav.querySelectorAll('button');
+    const update = () => {
+      btns[0].disabled = track.scrollLeft <= 4;
+      btns[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    };
+    btns.forEach(btn => btn.addEventListener('click', () => {
+      const card = track.firstElementChild;
+      const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap);
+      track.scrollBy({ left: step * Number(btn.dataset.dir), behavior: 'smooth' });
+    }));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
