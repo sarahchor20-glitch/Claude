@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>By Sez — UGC for Travel &amp; Hospitality</title>
 <meta name="description" content="By Sez — UGC creator for Airbnbs, hotels, resorts, airlines and product brands. Reels, vertical B-roll and photography made for your channels.">
+<link rel="icon" href="icon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1d3a36">
+<!-- Link preview (Instagram, WhatsApp, iMessage, email). If the site address changes, update these URLs. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="By Sez | UGC for Travel, Hospitality &amp; Lifestyle">
+<meta property="og:description" content="Reels, vertical B-roll and photography for Airbnbs, hotels, resorts, airlines and product brands.">
+<meta property="og:image" content="https://sarahchor20-glitch.github.io/Claude/images/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://sarahchor20-glitch.github.io/Claude/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sarahchor20-glitch.github.io/Claude/images/preview.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -501,7 +515,7 @@
 
   .brand-aside-text { font-size: 0.82rem; color: var(--ink-soft); margin: 0.6rem 0 1rem; }
 
-  .mini-phones { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; max-width: 250px; }
+  .mini-phones { display: grid; grid-template-columns: 1fr; gap: 0.8rem; max-width: 140px; }
 
   .mini-phones figcaption {
     margin-top: 0.5rem;
@@ -784,7 +798,7 @@
     .hero-note { display: none; }
     .chapter { grid-template-columns: 1fr; gap: 1.4rem; }
     .chapter-reels { grid-template-areas: "meta" "media" "aside"; grid-template-rows: none; }
-    .brand-aside { display: grid; grid-template-columns: 1fr 180px; gap: 0 1.2rem; align-items: center; }
+    .brand-aside { display: grid; grid-template-columns: 1fr 120px; gap: 0 1.2rem; align-items: center; }
     .brand-aside .eyebrow, .brand-aside-text { grid-column: 1; }
     .brand-aside .mini-phones { grid-column: 2; grid-row: 1 / span 2; }
     .chapter-meta { position: static; }
@@ -945,7 +959,7 @@
             <video src="videos/reel-1.mp4" poster="videos/reel-1.jpg" muted loop playsinline autoplay preload="metadata"></video>
             <button class="sound" type="button">Sound on</button>
           </div></div>
-          <figcaption class="frame-caption">Private Villa</figcaption>
+          <figcaption class="frame-caption">Villa Lisa &nbsp;·&nbsp; Ubud</figcaption>
         </figure>
         <figure class="reveal">
           <div class="phone"><div class="phone-screen frame">
@@ -974,7 +988,7 @@
         <button type="button" data-dir="1" aria-label="Next reels">&#8594;</button>
       </div>
       </div>
-      <!-- BRAND / PRODUCT ASIDE. LUGGAGE: replace the phone-empty div with a <video> like the Wander Gut one (videos/brand-luggage.mp4) -->
+      <!-- BRAND / PRODUCT ASIDE: to add another product reel, copy the <figure> below and set grid-template-columns on .mini-phones to 1fr 1fr -->
       <aside class="brand-aside reveal" id="brands">
         <p class="eyebrow">Product brands too</p>
         <p class="brand-aside-text">Send your product with me and I'll capture it in real travel and lifestyle moments, in and beyond the travel niche.</p>
@@ -985,12 +999,6 @@
               <button class="sound" type="button">Sound on</button>
             </div></div>
             <figcaption>Wander Gut</figcaption>
-          </figure>
-          <figure>
-            <div class="phone mini"><div class="phone-screen frame">
-              <div class="phone-empty">Coming soon</div>
-            </div></div>
-            <figcaption>Luggage</figcaption>
           </figure>
         </div>
       </aside>
