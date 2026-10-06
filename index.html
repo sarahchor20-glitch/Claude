@@ -321,21 +321,33 @@
 
   .grid-reels .phone { box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset, 0 14px 20px -14px rgba(31,37,35,0.4); }
 
-  .reels-nav { display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1.4rem; }
+  /* Slider arrows sit on the edges of each row so it's obvious there's more */
+  .reels-wrap, .carousel-wrap { position: relative; }
+  .reels-nav { position: absolute; inset: 0; pointer-events: none; }
   .reels-nav button {
-    width: 2.6rem;
-    height: 2.6rem;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
-    border: 1px solid var(--line);
-    background: transparent;
+    border: 0;
+    background: rgba(246,246,243,0.96);
     color: var(--ink);
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, opacity 0.2s;
+    pointer-events: auto;
+    box-shadow: 0 8px 22px -8px rgba(31,37,35,0.45);
+    transition: opacity 0.25s, background 0.2s, color 0.2s;
   }
+  .reels-nav button[data-dir="-1"] { left: -1.5rem; }
+  .reels-nav button[data-dir="1"] { right: -1.5rem; }
   .reels-nav button:hover { background: var(--ink); color: var(--bg); }
-  .reels-nav button:disabled { opacity: 0.3; cursor: default; background: transparent; color: var(--ink); }
-  .grid-reels .frame-caption strong { font-size: 1.02rem; }
+  .reels-nav button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .reels-nav button:disabled { opacity: 0; pointer-events: none; }
+  .carousel-wrap .reels-nav button { top: 50%; }
+
   .carousel-wrap { min-width: 0; }
   .grid-broll {
     --broll-gap: 0.8rem;
@@ -759,7 +771,9 @@
   }
 
   @media (max-width: 560px) {
-    .reels-nav { display: none; }
+    .reels-nav button { width: 2.5rem; height: 2.5rem; font-size: 0.95rem; }
+    .reels-nav button[data-dir="-1"] { left: -0.4rem; }
+    .reels-nav button[data-dir="1"] { right: -0.4rem; }
     .grid-reels {
       grid-auto-columns: 72%;
       overflow-x: auto;
@@ -1129,8 +1143,8 @@
     const track = document.getElementById(nav.dataset.track);
     const btns = nav.querySelectorAll('button');
     const update = () => {
-      btns[0].disabled = track.scrollLeft <= 4;
-      btns[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      btns[0].disabled = track.scrollLeft <= 10;
+      btns[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
     };
     btns.forEach(btn => btn.addEventListener('click', () => {
       const card = track.firstElementChild;
