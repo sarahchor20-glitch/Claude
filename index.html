@@ -594,60 +594,6 @@
   .about-pillars strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; }
   .about-pillars span { font-size: 0.78rem; color: var(--ink-soft); }
 
-  /* ── REVIEWS ── */
-  .reviews { background: #eceee9; padding: clamp(3.2rem, 6vw, 4.8rem) 0; }
-
-  .reviews-head { text-align: center; margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }
-
-  .reviews-head h2 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
-    line-height: 1.05;
-    margin-top: 1rem;
-  }
-
-  .reviews-head h2 em { color: var(--accent); }
-
-  .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-
-  .review {
-    background: var(--bg);
-    padding: 2rem 1.8rem 1.8rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .review::before {
-    content: '\201C';
-    font-family: var(--serif);
-    font-size: 3.4rem;
-    line-height: 0.6;
-    color: var(--accent);
-    margin-bottom: 0.6rem;
-  }
-
-  .review blockquote {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    line-height: 1.45;
-    flex: 1;
-  }
-
-  .review figcaption {
-    margin-top: 1.4rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--line);
-    font-size: 0.66rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-
-  .review figcaption strong { display: block; color: var(--ink); font-weight: 500; margin-bottom: 0.2rem; }
-
-  .review.placeholder blockquote { color: rgba(31,37,35,0.45); font-style: italic; }
-
   /* ── PROCESS ── */
   .process {
     padding: clamp(3.2rem, 6vw, 4.5rem) 0;
@@ -765,7 +711,6 @@
     .about-grid { grid-template-columns: 1fr; }
     .about-photo { max-width: 300px; margin: -6rem auto 0; }
     .about-copy { padding-top: 1.5rem; }
-    .review-grid { grid-template-columns: 1fr; }
     .contact { padding-top: 25rem; }
     .contact-bg { height: 34rem; object-position: 50% 30%; }
     .contact::after { background: linear-gradient(180deg, rgba(29,58,54,0) 0, rgba(29,58,54,0) 15rem, rgba(29,58,54,0.85) 27rem, var(--deep) 34rem); }
@@ -837,7 +782,6 @@
       <li><a href="#reels">Reels</a></li>
       <li><a href="#broll">B-Roll</a></li>
       <li><a href="#photography">Photography</a></li>
-      <li><a href="#reviews">Reviews</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Enquire</a>
   </div>
@@ -1035,29 +979,6 @@
   </div>
 </main>
 
-<!-- REVIEWS: replace each placeholder with a real quote, name and property/brand, and remove class="placeholder" -->
-<section class="reviews" id="reviews">
-  <div class="wrap">
-    <div class="reviews-head">
-      <p class="eyebrow reveal">Reviews</p>
-      <h2 class="reveal">Hear it from the <em>hosts</em></h2>
-    </div>
-    <div class="review-grid">
-      <figure class="review placeholder reveal">
-        <blockquote>Client review coming soon.</blockquote>
-        <figcaption><strong>Client name</strong>Property or brand</figcaption>
-      </figure>
-      <figure class="review placeholder reveal">
-        <blockquote>Client review coming soon.</blockquote>
-        <figcaption><strong>Client name</strong>Property or brand</figcaption>
-      </figure>
-      <figure class="review placeholder reveal">
-        <blockquote>Client review coming soon.</blockquote>
-        <figcaption><strong>Client name</strong>Property or brand</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
 
 <!-- PROCESS -->
 <section class="process dark" id="process">
