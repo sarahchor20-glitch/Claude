@@ -656,22 +656,43 @@
   .step p:not(.step-num) { font-size: 0.85rem; color: var(--ink-soft); }
 
   /* ── CONTACT ── */
-  .contact { text-align: center; padding: clamp(3.5rem, 7vw, 5rem) 0; }
+  .contact { padding: clamp(3.5rem, 7vw, 5.5rem) 0; overflow: hidden; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(2rem, 6vw, 5.5rem);
+    align-items: center;
+  }
 
   .contact h2 {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(2.6rem, 6vw, 5rem);
+    font-size: clamp(2.6rem, 5.4vw, 4.6rem);
     line-height: 1.02;
-    max-width: 16ch;
-    margin: 1.2rem auto 1.6rem;
+    max-width: 14ch;
+    margin: 1.2rem 0 1.6rem;
   }
 
   .contact h2 em { color: var(--accent); }
 
-  .contact-sub { color: var(--ink-soft); max-width: 46ch; margin: 0 auto 2.6rem; }
+  .contact-sub { color: var(--ink-soft); max-width: 46ch; margin: 0 0 2.4rem; }
 
-  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .contact-photo { justify-self: center; width: 100%; max-width: 380px; }
+
+  .contact-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    background: #fff;
+    border: 12px solid #fff;
+    border-bottom-width: 56px;
+    transform: rotate(3deg);
+    box-shadow: 0 28px 50px -22px rgba(31,37,35,0.45);
+  }
 
   /* ── FOOTER ── */
   footer { border-top: 1px solid var(--line); }
@@ -705,6 +726,10 @@
     .about-photo { max-width: 300px; margin: -6rem auto 0; }
     .about-copy { padding-top: 1.5rem; }
     .review-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; text-align: center; }
+    .contact-photo { order: -1; max-width: 280px; margin-bottom: 0.5rem; }
+    .contact h2, .contact-sub { margin-left: auto; margin-right: auto; }
+    .contact-links { justify-content: center; }
     .nav-links { display: none; }
     .hero { min-height: 92vh; padding: 7rem 0 8rem; }
     .hero::after { background: linear-gradient(0deg, rgba(14,24,22,0.82) 0%, rgba(14,24,22,0.55) 55%, rgba(14,24,22,0.35) 100%); }
@@ -856,6 +881,13 @@
             <button class="sound" type="button">Sound on</button>
           </div></div>
           <figcaption class="frame-caption">Hilton Hotel &nbsp;·&nbsp; Istanbul</figcaption>
+        </figure>
+        <figure class="reveal">
+          <div class="phone"><div class="phone-screen frame">
+            <video src="videos/reel-6.mp4" poster="videos/reel-6.jpg" muted loop playsinline autoplay preload="metadata"></video>
+            <button class="sound" type="button">Sound on</button>
+          </div></div>
+          <figcaption class="frame-caption">Ubud</figcaption>
         </figure>
         <figure class="reveal">
           <div class="phone"><div class="phone-screen frame">
@@ -1013,13 +1045,18 @@
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="wrap">
-    <p class="eyebrow reveal">Let's Work Together</p>
-    <h2 class="reveal">Your brand deserves to be <em>felt</em>, not just seen</h2>
-    <p class="contact-sub reveal">Whether you're an Airbnb, hotel, resort, airline or a product brand looking for travel and lifestyle content, let's talk about what it could look like for you.</p>
-    <div class="contact-links reveal">
-      <a href="mailto:hello@youremail.com" class="btn btn-solid">Email Me</a>
-      <a href="https://www.tiktok.com/@bysez.ugc" target="_blank" rel="noopener" class="btn btn-line">TikTok @bysez.ugc</a>
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow reveal">Let's Work Together</p>
+      <h2 class="reveal">Your brand deserves to be <em>felt</em>, not just seen</h2>
+      <p class="contact-sub reveal">Whether you're an Airbnb, hotel, resort, airline or a product brand looking for travel and lifestyle content, let's talk about what it could look like for you.</p>
+      <div class="contact-links reveal">
+        <a href="mailto:hello@youremail.com" class="btn btn-solid">Email Me</a>
+        <a href="https://www.tiktok.com/@bysez.ugc" target="_blank" rel="noopener" class="btn btn-line">TikTok @bysez.ugc</a>
+      </div>
+    </div>
+    <div class="contact-photo reveal">
+      <img src="images/sez-2.jpg" alt="Sez sitting in a woven nest seat overlooking Bali rice terraces" loading="lazy">
     </div>
   </div>
 </section>
