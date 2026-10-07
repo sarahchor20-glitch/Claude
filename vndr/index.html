@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VNDR — Vending empire, simplified.</title>
 <meta name="description" content="VNDR supplies commercial and specialty vending machines — plus the guidance on locations, stock and scaling you need to turn vending into a real business.">
+<link rel="canonical" href="https://sarahchor20-glitch.github.io/Claude/vndr/">
 <meta name="theme-color" content="#0b0b0c">
 <meta property="og:type" content="website">
 <meta property="og:title" content="VNDR — Vending empire, simplified.">
@@ -36,10 +37,10 @@
   <div class="wrap">
     <a href="#top" class="logo" aria-label="VNDR home">VNDR<b>.</b></a>
     <nav class="nav-links" id="navLinks">
-      <a href="machines.html">Machines</a>
+      <a href="machines/">Machines</a>
       <a href="#how">How it works</a>
-      <a href="#locations">Locations</a>
-      <a href="#learn">Learn</a>
+      <a href="blog/">Blog</a>
+      <a href="quiz/">Quiz</a>
       <a href="#about">About</a>
     </nav>
     <a href="#enquire" class="btn btn-primary nav-cta">Enquire <span class="arrow">→</span></a>
@@ -58,7 +59,7 @@
         <h1 class="reveal">Build your vending empire.<span class="line2">We'll simplify the rest.</span></h1>
         <p class="lede reveal">Commercial vending machines, specialty vending concepts and the resources you need to turn vending into a real business.</p>
         <div class="hero-ctas reveal">
-          <a href="machines.html" class="btn btn-primary">Shop machines <span class="arrow">→</span></a>
+          <a href="machines/" class="btn btn-primary">Shop machines <span class="arrow">→</span></a>
           <a href="#how" class="btn btn-ghost">How it works</a>
         </div>
       </div>
@@ -112,7 +113,7 @@
       <p class="lede reveal">Your first machine could be the beginning of something much bigger. Pick the one that fits the business you want to build, then tap it for the full specs.</p>
     </div>
     <div class="machine-grid" id="machineGrid"></div>
-    <div class="reveal" style="margin-top: 40px; text-align: center;"><a href="machines.html" class="btn btn-ghost">Compare all machines <span class="arrow">→</span></a></div>
+    <div class="reveal" style="margin-top: 40px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;"><a href="machines/" class="btn btn-ghost">Compare all machines <span class="arrow">→</span></a><a href="quiz/which-vending-machine/" class="btn btn-primary">Not sure? Take the quiz <span class="arrow">→</span></a></div>
   </div>
 </section>
 
@@ -135,7 +136,7 @@
         </div>
         <div class="price-row reveal">
           <div class="big-price"><small>From</small>$5,997</div>
-          <button class="btn btn-primary" data-open="ramen">View machine <span class="arrow">→</span></button>
+          <a class="btn btn-primary" href="machines/ramen-vending-machine/">Explore ramen machines <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -194,42 +195,7 @@
       </div>
       <p class="lede reveal">Move the sliders to see how sales, pricing and location deals shape your monthly profit and payback time.</p>
     </div>
-    <div class="calc reveal">
-      <div class="calc-in">
-        <div class="field">
-          <label for="iMachine">Machine price <output id="oMachine"></output></label>
-          <input type="range" id="iMachine" min="2997" max="14997" step="500" value="5997">
-        </div>
-        <div class="field">
-          <label for="iSales">Sales per day <output id="oSales"></output></label>
-          <input type="range" id="iSales" min="1" max="60" step="1" value="15">
-        </div>
-        <div class="field">
-          <label for="iPrice">Average sale price <output id="oPrice"></output></label>
-          <input type="range" id="iPrice" min="1" max="12" step="0.5" value="4.5">
-        </div>
-        <div class="field">
-          <label for="iCost">Product cost per sale <output id="oCost"></output></label>
-          <input type="range" id="iCost" min="0.5" max="8" step="0.1" value="1.8">
-        </div>
-        <div class="field">
-          <label for="iComm">Location commission <output id="oComm"></output></label>
-          <input type="range" id="iComm" min="0" max="30" step="1" value="10">
-        </div>
-      </div>
-      <div class="calc-out" aria-live="polite">
-        <div class="eyebrow">Estimated monthly profit</div>
-        <div class="big" id="rProfit">$0</div>
-        <div class="sub" id="rSub"></div>
-        <div class="calc-rows">
-          <div><small>Monthly revenue</small><b id="rRev">$0</b></div>
-          <div><small>Product cost</small><b id="rCogs">$0</b></div>
-          <div><small>Location commission</small><b id="rComm">$0</b></div>
-          <div><small>Yearly profit</small><b id="rYear">$0</b></div>
-        </div>
-      </div>
-    </div>
-    <p class="calc-note">Illustrative estimate only, based on 30 trading days a month. It doesn't include card fees, electricity, maintenance, travel, your time or tax, and actual results depend heavily on your location. Use it to compare scenarios, not as a forecast.</p>
+    <div id="calc" class="reveal"></div>
   </div>
 </section>
 
@@ -241,7 +207,7 @@
         <div class="eyebrow reveal">Vending 101</div>
         <h2 class="reveal">Stop overthinking vending. <span class="accent">Start building.</span></h2>
       </div>
-      <p class="lede reveal">Short, practical guides that answer the questions every new operator asks, in plain English.</p>
+      <p class="lede reveal">Short, practical guides that answer the questions every new operator asks, in plain English. <a href="blog/" style="color:var(--ink);text-decoration:underline">Visit the blog →</a></p>
     </div>
     <div class="learn-grid" id="learnGrid"></div>
 
@@ -325,10 +291,10 @@
     <div class="foot-row">
       <a href="#top" class="logo">VNDR<b>.</b></a>
       <nav>
-        <a href="machines.html">Machines</a>
-        <a href="#how">How it works</a>
-        <a href="#locations">Locations</a>
-        <a href="#learn">Learn</a>
+        <a href="machines/">Machines</a>
+        <a href="machines/ramen-vending-machine/">Ramen machines</a>
+        <a href="blog/">Blog</a>
+        <a href="quiz/">Quizzes</a>
         <a href="#enquire">Enquire</a>
       </nav>
       <span>© <span id="year"></span> VNDR. Vending empire, simplified.</span>
@@ -336,27 +302,8 @@
   </div>
 </footer>
 
-<!-- Machine detail pop-up -->
-<dialog id="mDialog" aria-labelledby="dTitle">
-  <button class="d-close" id="dClose" aria-label="Close">×</button>
-  <div class="d-grid">
-    <div class="d-visual" id="dVisual"></div>
-    <div class="d-body">
-      <div class="eyebrow" id="dType"></div>
-      <h2 id="dTitle"></h2>
-      <div class="d-price" id="dPrice"></div>
-      <p id="dDesc"></p>
-      <ul class="d-feats" id="dFeats"></ul>
-      <dl class="specs" id="dSpecs"></dl>
-      <div class="d-ctas">
-        <button class="btn btn-primary" id="dEnquire">Get pricing <span class="arrow">→</span></button>
-        <button class="btn btn-ghost" id="dBack">Keep browsing</button>
-      </div>
-    </div>
-  </div>
-</dialog>
 
-<script src="machines.js"></script>
+<script src="site.js"></script>
 <script>
 /* =================== EDIT ME =================== */
 const ENQUIRY_EMAIL = 'hello@vndr.com';   // ← replace with your real enquiry inbox
@@ -376,15 +323,15 @@ const LOCATIONS = [
   ['Entertainment venues', 'Peak crowds and late finishes.', 'ticket']
 ];
 
-const GUIDES = [
-  'How vending actually works',
-  'How much vending machines cost',
-  'How to find great locations',
-  'What products to sell',
-  'How to calculate your margins',
-  'How to approach a business owner',
-  'How to maintain your machines',
-  'How to scale past one machine'
+const GUIDES = [   // [title, link, label]
+  ['Is a vending business a good idea for you?', 'blog/is-a-vending-machine-business-a-good-idea/', 'Guide'],
+  ['How to start a vending machine business', 'blog/how-to-start-a-vending-machine-business/', 'Guide'],
+  ['How to find great locations', 'blog/how-to-find-vending-machine-locations/', 'Guide'],
+  ['What to sell in a vending machine', 'blog/what-to-sell-in-a-vending-machine/', 'Guide'],
+  ['What it costs to start', 'blog/how-much-does-it-cost-to-start-a-vending-business/', 'Guide'],
+  ['Ramen vending machines: the complete guide', 'blog/ramen-vending-machines-guide/', 'Guide'],
+  ['Quiz: is vending right for you?', 'quiz/is-vending-right-for-you/', 'Quiz'],
+  ['Quiz: which machine should you start with?', 'quiz/which-vending-machine/', 'Quiz']
 ];
 
 const RESOURCES = [
@@ -421,7 +368,7 @@ $('#heroVisual').insertAdjacentHTML('beforeend', machineSVG('ramen', 'hero'));
 $('#spotVisual').innerHTML = machineSVG('ramen', 'spot');
 
 $('#machineGrid').innerHTML = MACHINES.map(m => `
-  <button class="m-card reveal" data-open="${m.id}" aria-label="View ${esc(m.name)}">
+  <a class="m-card reveal" href="${m.page}">
     <div class="m-visual"><span class="m-tag ${m.tag === 'Specialty' ? 'hot' : ''}">${esc(m.tag)}</span>${machineSVG(m.art, 'card-' + m.id)}</div>
     <div class="m-body">
       <h3>${esc(m.name)}</h3>
@@ -431,13 +378,13 @@ $('#machineGrid').innerHTML = MACHINES.map(m => `
         <span class="m-more" aria-hidden="true">→</span>
       </div>
     </div>
-  </button>`).join('');
+  </a>`).join('');
 
 $('#locGrid').innerHTML = LOCATIONS.map(([n, d, i]) => `<div class="loc reveal">${icon(i)}<h4>${esc(n)}</h4><p>${esc(d)}</p></div>`).join('');
 
-$('#learnGrid').innerHTML = GUIDES.map((g, i) => `
-  <a class="guide reveal" href="#enquire" data-resource="Guide: ${esc(g)}">
-    <span class="n"><span>${String(i + 1).padStart(2, '0')}</span><span>Coming soon</span></span>
+$('#learnGrid').innerHTML = GUIDES.map(([g, href, label], i) => `
+  <a class="guide reveal" href="${href}">
+    <span class="n"><span>${String(i + 1).padStart(2, '0')}</span><span>${label} →</span></span>
     <h4>${esc(g)}</h4>
   </a>`).join('');
 
@@ -445,65 +392,18 @@ $('#resList').innerHTML = RESOURCES.map(r => `<button class="res reveal" data-re
 
 $('#fMachine').innerHTML = `<option value="Not sure yet">Not sure yet</option>` + MACHINES.map(m => `<option>${esc(m.name)}</option>`).join('');
 
-/* ---------- Dialog ---------- */
-const dlg = $('#mDialog');
-let current = null;
-function openMachine(id) {
-  const m = MACHINES.find(x => x.id === id);
-  if (!m) return;
-  current = m;
-  $('#dVisual').innerHTML = machineSVG(m.art, 'dlg');
-  $('#dType').textContent = CATEGORIES.find(c => c.id === m.category).name + ' machine';
-  $('#dTitle').textContent = m.name;
-  $('#dPrice').textContent = m.price;
-  $('#dDesc').textContent = m.desc;
-  $('#dFeats').innerHTML = m.features.map(f => `<li>${esc(f)}</li>`).join('');
-  $('#dSpecs').innerHTML = Object.entries({ 'Interface': m.interface, 'Temperature': m.temp, ...m.specs }).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd class="${v === 'On enquiry' ? 'tbc' : ''}">${esc(v)}</dd></div>`).join('');
-  dlg.showModal();
-  dlg.querySelector('.d-body').scrollTop = 0;
-}
+/* ---------- Resource requests -> enquiry form ---------- */
 document.addEventListener('click', e => {
-  const o = e.target.closest('[data-open]');
-  if (o) openMachine(o.dataset.open);
   const r = e.target.closest('[data-resource]');
-  if (r) {
-    const msg = $('#fMsg');
-    const line = `Please send me: ${r.dataset.resource}`;
-    if (!msg.value.includes(line)) msg.value = (msg.value ? msg.value + '\n' : '') + line;
-    if (r.tagName === 'BUTTON') $('#enquire').scrollIntoView({ behavior: 'smooth' });
-  }
-});
-$('#dClose').onclick = $('#dBack').onclick = () => dlg.close();
-dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
-$('#dEnquire').onclick = () => {
-  $('#fMachine').value = current.name;
-  dlg.close();
+  if (!r) return;
+  const msg = $('#fMsg');
+  const line = `Please send me: ${r.dataset.resource}`;
+  if (!msg.value.includes(line)) msg.value = (msg.value ? msg.value + '\n' : '') + line;
   $('#enquire').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => $('#fName').focus({ preventScroll: true }), 600);
-};
+});
 
 /* ---------- Calculator ---------- */
-const money = n => '$' + Math.round(n).toLocaleString('en-US');
-function calc() {
-  const calcPrice = +$('#iMachine').value;
-  const s = +$('#iSales').value, p = +$('#iPrice').value, c = +$('#iCost').value, k = +$('#iComm').value;
-  const rev = s * p * 30, cogs = s * c * 30, comm = rev * k / 100, profit = rev - cogs - comm;
-  $('#oSales').textContent = s;
-  $('#oPrice').textContent = '$' + p.toFixed(2);
-  $('#oCost').textContent = '$' + c.toFixed(2);
-  $('#oComm').textContent = k + '%';
-  $('#oMachine').textContent = money(calcPrice);
-  $('#rRev').textContent = money(rev);
-  $('#rCogs').textContent = money(cogs);
-  $('#rComm').textContent = money(comm);
-  $('#rYear').textContent = money(profit * 12);
-  $('#rProfit').textContent = (profit < 0 ? '−' : '') + money(Math.abs(profit));
-  $('#rSub').textContent = profit > 0
-    ? `Machine paid back in about ${(calcPrice / profit).toFixed(1)} months`
-    : 'Adjust price or cost: this setup loses money';
-}
-['#iMachine', '#iSales', '#iPrice', '#iCost', '#iComm'].forEach(s => $(s).addEventListener('input', calc));
-calc();
+mountCalc($('#calc'));
 
 /* ---------- Form ---------- */
 $('#enqForm').addEventListener('submit', e => {

@@ -1,6 +1,7 @@
 /* =====================================================================
    VNDR — shared machine catalogue + site helpers
-   Used by index.html (home) and machines.html (product page).
+   Loaded by every page. The page generator (_build/build.mjs) also reads
+   MACHINES and machineSVG from this file to write the product pages.
 
    EDIT MACHINES HERE. Every page updates automatically.
    "On enquiry" = placeholder. Replace with real specs when you have them.
@@ -16,6 +17,7 @@ const CATEGORIES = [
 const MACHINES = [
   {
     id: 'ramen',
+    page: 'machines/ramen-vending-machine/#touchscreen',   // product page (relative to the site root)
     category: 'ramen',
     name: 'Ramen Machine: Touchscreen',
     tag: 'Specialty',
@@ -36,6 +38,7 @@ const MACHINES = [
   },
   {
     id: 'ramen-keypad',
+    page: 'machines/ramen-vending-machine/#keypad',   // product page (relative to the site root)
     category: 'ramen',
     name: 'Ramen Machine: Keypad',
     tag: 'Specialty',
@@ -56,6 +59,7 @@ const MACHINES = [
   },
   {
     id: 'snack-chilled',
+    page: 'machines/refrigerated-snack-vending-machine/',   // product page (relative to the site root)
     category: 'snack',
     name: 'Refrigerated Snack Machine',
     tag: 'Refrigerated',
@@ -76,6 +80,7 @@ const MACHINES = [
   },
   {
     id: 'snack',
+    page: 'machines/snack-vending-machine/',   // product page (relative to the site root)
     category: 'snack',
     name: 'Non-Refrigerated Snack Machine',
     tag: 'Best first machine',
@@ -96,6 +101,7 @@ const MACHINES = [
   },
   {
     id: 'drinks',
+    page: 'machines/drink-vending-machine/',   // product page (relative to the site root)
     category: 'drinks',
     name: 'Drinks Machine',
     tag: 'Refrigerated',
@@ -116,6 +122,7 @@ const MACHINES = [
   },
   {
     id: 'coffee',
+    page: 'machines/coffee-vending-machine/',   // product page (relative to the site root)
     category: 'coffee',
     name: 'Coffee Vending Machine',
     tag: 'Hot drinks',
@@ -305,4 +312,50 @@ function initChrome() {
 
   const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 5) * 60 + 'ms'; io.observe(el); });
+}
+
+
+/* ---------- Profit calculator (home page + product pages) ---------- */
+function mountCalc(el, d = {}) {
+  const v = Object.assign({ machine: 5997, sales: 15, price: 4.5, cost: 1.8, comm: 10 }, d);
+  const slider = (id, label, min, max, step, val) => `
+    <div class="field">
+      <label for="${id}">${label} <output id="o${id}"></output></label>
+      <input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${val}">
+    </div>`;
+  el.innerHTML = `
+    <div class="calc">
+      <div class="calc-in">
+        ${slider('cMachine', 'Machine price', 2997, 14997, 500, v.machine)}
+        ${slider('cSales', 'Sales per day', 1, 60, 1, v.sales)}
+        ${slider('cPrice', 'Average sale price', 1, 12, 0.5, v.price)}
+        ${slider('cCost', 'Product cost per sale', 0.5, 8, 0.1, v.cost)}
+        ${slider('cComm', 'Location commission', 0, 30, 1, v.comm)}
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="eyebrow">Estimated monthly profit</div>
+        <div class="big" id="rProfit">$0</div>
+        <div class="sub" id="rSub"></div>
+        <div class="calc-rows">
+          <div><small>Monthly revenue</small><b id="rRev">$0</b></div>
+          <div><small>Product cost</small><b id="rCogs">$0</b></div>
+          <div><small>Location commission</small><b id="rComm">$0</b></div>
+          <div><small>Yearly profit</small><b id="rYear">$0</b></div>
+        </div>
+      </div>
+    </div>
+    <p class="calc-note">Illustrative estimate only, based on 30 trading days a month. It doesn't include card fees, electricity, maintenance, travel, your time or tax, and actual results depend heavily on your location. Use it to compare scenarios, not as a forecast.</p>`;
+  const money = n => '$' + Math.round(n).toLocaleString('en-US');
+  const val = id => +el.querySelector('#' + id).value;
+  const out = (id, t) => { el.querySelector('#' + id).textContent = t; };
+  function calc() {
+    const m = val('cMachine'), s = val('cSales'), p = val('cPrice'), c = val('cCost'), k = val('cComm');
+    const rev = s * p * 30, cogs = s * c * 30, comm = rev * k / 100, profit = rev - cogs - comm;
+    out('ocMachine', money(m)); out('ocSales', s); out('ocPrice', '$' + p.toFixed(2)); out('ocCost', '$' + c.toFixed(2)); out('ocComm', k + '%');
+    out('rRev', money(rev)); out('rCogs', money(cogs)); out('rComm', money(comm)); out('rYear', money(profit * 12));
+    out('rProfit', (profit < 0 ? '−' : '') + money(Math.abs(profit)));
+    out('rSub', profit > 0 ? `Machine paid back in about ${(m / profit).toFixed(1)} months` : 'Adjust price or cost: this setup loses money');
+  }
+  el.addEventListener('input', calc);
+  calc();
 }
