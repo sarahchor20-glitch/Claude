@@ -1,5 +1,5 @@
 // Product pages. Text lives here; machine names, prices, features and specs come from site.js.
-import { MACHINES, CATEGORIES, machine, machineSVG, esc, writePage, slot, art, icon, crumbs, faqBlock, ctaBand, BASE_URL } from './lib.mjs';
+import { MACHINES, CATEGORIES, machine, machineSVG, esc, writePage, slot, art, photo, PHOTOS, icon, crumbs, faqBlock, ctaBand, BASE_URL } from './lib.mjs';
 
 const I = {
   screen: '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M10 18h4"/>',
@@ -64,13 +64,12 @@ function ramenPage() {
     ${crumb.html}
     <div class="pd-grid">
       <div class="pd-gallery reveal">
-        <!-- Main hero image: replace the illustration with your best photo of the machine -->
-        ${art('ramen', 'hero')}
-        <div class="pd-thumbs">
-          ${slot({ ratio: '1x1', hint: 'Machine in a real location', file: root + 'images/ramen/location.jpg' })}
-          ${slot({ ratio: '1x1', hint: 'Touchscreen close-up', file: root + 'images/ramen/screen.jpg' })}
-          ${slot({ ratio: '1x1', hint: 'Hot water being dispensed', file: root + 'images/ramen/dispense.jpg' })}
-          ${slot({ ratio: '1x1', hint: 'Finished noodle cup', file: root + 'images/ramen/cup.jpg' })}
+        <div id="pdMain">${photo(root, { p: PHOTOS.front, ratio: '4x5', eager: true, caption: 'Wrapped for Right Away Ramen' })}</div>
+        <div class="pd-thumbs" role="group" aria-label="Photos">
+          ${[['front', 'Right Away Ramen'], ['shelves', 'Right Away Ramen'], ['collect', 'Right Away Ramen'], ['water', 'Right Away Ramen']].map(([k, cap], i) => {
+            const p = PHOTOS[k];
+            return `<button type="button" class="pd-thumb" aria-pressed="${i === 0}" aria-label="Show photo: ${esc(p.alt)}" data-photo="${k}"><img src="${root}${p.file}-sm.jpg" alt="" loading="lazy" width="640" height="${Math.round(640 * p.h / p.w)}"></button>`;
+          }).join('')}
         </div>
       </div>
       <div class="pd-info">
@@ -98,7 +97,7 @@ function ramenPage() {
   <div class="wrap">
     <div class="stats reveal">
       <div><b>2</b><span>models: touchscreen &amp; keypad</span></div>
-      <div><b>Hot</b><span>water dispensed by the machine</span></div>
+      <div><b>Hot</b><span>water station built into the machine</span></div>
       <div><b>24/7</b><span>sales potential, no staff needed</span></div>
       <div><b>1</b><span>machine to start your business</span></div>
     </div>
@@ -127,11 +126,11 @@ function ramenPage() {
       <div>
         <div class="eyebrow reveal">What is a ramen vending machine?</div>
         <h2 class="reveal">A hot meal, not just a snack.</h2>
-        <p class="reveal">A ramen vending machine sells instant noodles <strong>and</strong> provides the hot water to make them. Customers choose their noodles, pay, and the machine dispenses the cup with hot water. Cutlery is right there, so they can eat on the spot.</p>
+        <p class="reveal">A ramen vending machine sells instant noodles <strong>and</strong> provides the hot water to make them. Customers choose their noodles, pay, collect the cup and fill it at the machine's built-in hot-water station. Cutlery is right there, so they can eat on the spot.</p>
         <p class="reveal">That turns a vending machine into a <strong>meal option</strong>. It's something people actively seek out when the cafeteria is closed, the shift runs late, or the nearest food is a drive away.</p>
         <p class="reveal">And because it's different from every snack and drink machine people walk past, it gets noticed, photographed and talked about.</p>
       </div>
-      <div class="reveal">${slot({ ratio: '4x5', hint: 'Lifestyle shot: someone enjoying noodles next to the machine', file: root + 'images/ramen/lifestyle.jpg' })}</div>
+      <div class="reveal">${photo(root, { p: PHOTOS.water, ratio: '4x5', pos: '50% 55%', caption: 'Built-in hot-water station' })}</div>
     </div>
   </div>
 </section>
@@ -145,13 +144,13 @@ function ramenPage() {
     </div>
     <div class="csteps">
       ${[
-        ['Choose', 'They pick their noodles on the touchscreen or keypad.', 'Customer choosing on screen'],
-        ['Pay', 'Quick payment at the machine. No cashier, no queue.', 'Card / phone payment'],
-        ['Hot water', 'The machine dispenses the noodles and adds hot water.', 'Hot water dispensing'],
-        ['Enjoy', 'Grab cutlery from the compartment and eat on the spot.', 'Ready-to-eat noodles']
-      ].map(([h, p, hint], i) => `
+        ['Choose', 'They browse flavours and pick their noodles on the touchscreen (or keypad).', { p: PHOTOS.front, pos: '72% 27%', zoom: 2.1 }],
+        ['Pay', 'A quick tap of their card at the machine. No cashier, no queue.', { p: PHOTOS.front, pos: '88% 53%', zoom: 3 }],
+        ['Collect', 'Their cup drops into the pick-up door, ready to go.', { p: PHOTOS.collect, pos: '50% 58%' }],
+        ['Add hot water & enjoy', 'They fill the cup at the built-in hot-water station, grab cutlery and eat.', { p: PHOTOS.water, pos: '50% 62%' }]
+      ].map(([h, p, ph], i) => `
       <div class="cstep reveal">
-        ${slot({ ratio: '4x3', hint, file: `${root}images/ramen/step-${i + 1}.jpg` })}
+        ${photo(root, { ...ph, ratio: '4x3', sizes: '(max-width: 520px) 100vw, 25vw' })}
         <span class="n">0${i + 1}</span><h3>${h}</h3><p>${p}</p>
       </div>`).join('')}
     </div>
@@ -218,9 +217,10 @@ function ramenPage() {
         <h2 class="reveal">A machine with a personality.</h2>
         <p class="reveal">The ramen machine can carry a <strong>custom branded wrap</strong>. Use it to build your own vending brand across multiple machines, to match a venue's look, or to go bold with a design built around the food.</p>
         <p class="reveal">A great wrap does real work: it pulls people across the room, makes the machine part of the venue rather than an afterthought, and gives you something worth posting about.</p>
+        <p class="reveal">Take <strong>Right Away Ramen</strong>: their wrap carries their mascot, their website and a simple "Don't forget to tag us" with their Instagram handle. Every customer becomes a chance to be seen.</p>
         <a href="${root}index.html?machine=ramen#enquire" class="btn btn-ghost reveal">Ask about wraps</a>
       </div>
-      <div class="reveal">${slot({ ratio: '4x5', hint: 'Branded wrap example', file: root + 'images/ramen/wrap.jpg' })}</div>
+      <div class="reveal">${photo(root, { p: PHOTOS.collect, ratio: '4x5', pos: '50% 70%', caption: 'Wrap by Right Away Ramen' })}</div>
     </div>
   </div>
 </section>
@@ -286,7 +286,7 @@ function ramenPage() {
         </ul>
         <p class="reveal">Check every product works with the machine's cup size and hot-water dispensing before you stock it. We can help with that.</p>
       </div>
-      <div class="reveal">${slot({ ratio: '4x5', hint: 'Product range: noodle cups lined up', file: root + 'images/ramen/range.jpg' })}</div>
+      <div class="reveal">${photo(root, { p: PHOTOS.shelves, ratio: '4x5', pos: '30% 40%', caption: 'A full ramen menu, Right Away Ramen' })}</div>
     </div>
   </div>
 </section>
@@ -353,8 +353,9 @@ function ramenPage() {
       <h2 class="reveal">In the wild.</h2>
     </div>
     <div class="bcards reveal" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-      ${['University common room', 'Hospital staff area', 'Student accommodation lobby', 'Warehouse break room', 'Night-time exterior glow', 'Wrap design close-up'].map((h, i) =>
-        slot({ ratio: '4x5', hint: h, file: `${root}images/ramen/gallery-${i + 1}.jpg` })).join('')}
+      ${['front', 'shelves', 'collect', 'water'].map(k => photo(root, { p: PHOTOS[k], ratio: '4x5', sizes: '(max-width: 560px) 100vw, 25vw' })).join('')}
+      ${['University common room', 'Night-time glow in a hallway'].map((h, i) =>
+        slot({ ratio: '4x5', hint: h, file: `${root}images/ramen/gallery-${i + 5}.jpg` })).join('')}
     </div>
   </div>
 </section>
@@ -389,7 +390,18 @@ function ramenPage() {
   </div>
 </section>
 `,
-    scripts: `<script>window.addEventListener('DOMContentLoaded', () => mountCalc(document.getElementById('calc'), { machine: 5997, sales: 12, price: 6.5, cost: 2.2, comm: 10 }));</script>`
+    image: PHOTOS.front.file + '.jpg',
+    scripts: root => `<script>
+window.addEventListener('DOMContentLoaded', () => mountCalc(document.getElementById('calc'), { machine: 5997, sales: 12, price: 6.5, cost: 2.2, comm: 10 }));
+// Hero gallery: clicking a thumbnail swaps the main photo
+const PH = ${JSON.stringify(PHOTOS)};
+document.querySelectorAll('.pd-thumb').forEach(b => b.addEventListener('click', () => {
+  const p = PH[b.dataset.photo], img = document.querySelector('#pdMain img');
+  img.srcset = '${root}' + p.file + '-sm.jpg 640w, ${root}' + p.file + '.jpg ' + p.w + 'w';
+  img.src = '${root}' + p.file + '.jpg'; img.alt = p.alt;
+  document.querySelectorAll('.pd-thumb').forEach(x => x.setAttribute('aria-pressed', x === b));
+}));
+</script>`
   });
 }
 
@@ -668,7 +680,7 @@ function cataloguePage() {
     <div class="machine-grid">
       ${list.map(m => `
       <a class="m-card reveal" href="${root}${m.page}">
-        <div class="m-visual"><span class="m-tag ${m.tag === 'Specialty' ? 'hot' : ''}">${esc(m.tag)}</span>${machineSVG(m.art, 'cat-' + m.id)}</div>
+        <div class="m-visual ${m.photo ? 'has-photo' : ''}"><span class="m-tag ${m.tag === 'Specialty' ? 'hot' : ''}">${esc(m.tag)}</span>${m.photo ? `<img src="${root}${m.photo}-sm.jpg" alt="${esc(m.photoAlt)}" loading="lazy" width="640" height="835">` : machineSVG(m.art, 'cat-' + m.id)}</div>
         <div class="m-body">
           <h3>${esc(m.name)}</h3>
           <p>${esc(m.short)}</p>

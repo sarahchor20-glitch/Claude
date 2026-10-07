@@ -31,6 +31,20 @@ export function slot({ type = 'photo', ratio = '4x3', hint, file }) {
 <figure class="media r-${ratio} empty"><div class="ph">${ICONS[type]}<b>${type === 'video' ? 'Video' : 'Photo'}</b>${esc(hint)}</div></figure>`;
 }
 
+// Real photos (files in images/). Add new ones here, then use photo({ p: PHOTOS.key, ... }).
+export const PHOTOS = {
+  front:   { file: 'images/ramen/rar-machine-front', w: 1227, h: 1600, alt: 'Ramen vending machine wrapped for Right Away Ramen, with a touchscreen, product window and hot-water station' },
+  shelves: { file: 'images/ramen/rar-shelves', w: 1200, h: 1600, alt: 'Shelves of cup noodles inside a ramen vending machine, next to the hot-water station' },
+  collect: { file: 'images/ramen/rar-collect', w: 1200, h: 1600, alt: '"Collect Noodz Here" pick-up door on a Right Away Ramen vending machine' },
+  water:   { file: 'images/ramen/rar-hot-water', w: 1200, h: 1600, alt: 'Hot-water station on a ramen vending machine with a noodle cup ready to fill' }
+};
+
+/** A real photo. `root` is the page's path back to the site root; `pos` crops (object-position); `zoom` magnifies a detail. */
+export function photo(root, { p, ratio = '4x5', pos = '50% 50%', zoom, caption, eager = false, sizes = '(max-width: 900px) 100vw, 50vw', cls = '' }) {
+  const style = `object-position:${pos}` + (zoom ? `;transform:scale(${zoom});transform-origin:${pos}` : '');
+  return `<figure class="media r-${ratio} photo ${cls}"><img src="${root}${p.file}.jpg" srcset="${root}${p.file}-sm.jpg 640w, ${root}${p.file}.jpg ${p.w}w" sizes="${sizes}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" style="${style}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">${caption ? `<figcaption class="cap">${esc(caption)}</figcaption>` : ''}</figure>`;
+}
+
 export const art = (kind, uid, extra = '') => `<figure class="media art ${extra}">${machineSVG(kind, uid)}</figure>`;
 
 export const icon = (paths, cls = '') => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;

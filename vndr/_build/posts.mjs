@@ -131,6 +131,7 @@ export const POSTS = [
     date: '2026-10-07',
     lede: 'Hot noodles from a machine, at any hour. Here\'s how ramen vending machines work, where they do best, and what to know before you buy one.',
     hero: 'Ramen vending machine glowing in a dim corridor',
+    heroPhoto: 'front',
     body: `
 <p>Ramen vending machines are one of the most eye-catching concepts in vending right now. Instead of a cold snack, customers get a <strong>hot meal</strong>: instant noodles with hot water from the machine, ready to eat in minutes.</p>
 
@@ -138,8 +139,9 @@ export const POSTS = [
 <ol>
   <li>The customer chooses their noodles on a touchscreen or keypad.</li>
   <li>They pay at the machine.</li>
-  <li>The machine dispenses the noodles and adds hot water from its integrated hot-water system.</li>
-  <li>They grab cutlery from the cutlery compartment and eat.</li>
+  <li>They collect their cup from the pick-up door.</li>
+  <li>They fill it at the machine's built-in hot-water station.</li>
+  <li>They grab cutlery and eat on the spot.</li>
 </ol>
 <p>VNDR's ramen machines have <strong>independent water storage</strong>, so they're refilled rather than plumbed into a water supply. That gives you more freedom over where the machine can go.</p>
 
@@ -264,6 +266,7 @@ export const POSTS = [
     date: '2026-10-07',
     lede: 'Stock for the people at the location, not for yourself. Here\'s how to build a range that sells, and keep improving it.',
     hero: 'Neatly stocked vending machine, full front view',
+    heroPhoto: 'shelves',
     body: `
 <p>The right products can turn an average location into a good one. The wrong ones leave money sitting in the spirals.</p>
 

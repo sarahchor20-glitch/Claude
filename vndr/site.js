@@ -25,7 +25,7 @@ const MACHINES = [
     interface: 'Touchscreen',
     temp: 'Hot water',
     short: 'Interactive touchscreen ordering with an integrated hot-water system.',
-    desc: 'Our flagship specialty machine. Customers browse and order on a large interactive touchscreen, then the machine dispenses their noodles with hot water ready to go. It stands out from every snack machine in the building.',
+    desc: 'Our flagship specialty machine. Customers browse and order on a large interactive touchscreen, collect their cup, and fill it at the built-in hot-water station. It stands out from every snack machine in the building.',
     features: ['Interactive touchscreen', 'Hot-water system', 'Online machine monitoring', 'Custom branding / wrap', 'Product storage', 'Cutlery compartment', 'Independent water storage'],
     specs: {
       'Dimensions': 'On enquiry',
@@ -34,7 +34,9 @@ const MACHINES = [
       'Ideal locations': 'Universities, student accommodation, hospitals, transport hubs, late-night venues',
       'Shipping': 'On enquiry'
     },
-    art: 'ramen'
+    art: 'ramen',
+    photo: 'images/ramen/rar-machine-front',   // real photo (relative to site root); shown instead of the illustration on cards
+    photoAlt: 'Touchscreen ramen vending machine wrapped for Right Away Ramen'
   },
   {
     id: 'ramen-keypad',
@@ -46,7 +48,7 @@ const MACHINES = [
     interface: 'Keypad',
     temp: 'Hot water',
     short: 'The same hot-ramen concept with simple keypad selection.',
-    desc: 'The ramen concept with a straightforward keypad instead of a touchscreen. Customers punch in their selection and the machine serves their noodles with hot water. It\'s simple for customers and simple for you.',
+    desc: 'The ramen concept with a straightforward keypad instead of a touchscreen. Customers punch in their selection, collect their cup and add hot water from the built-in station. It\'s simple for customers and simple for you.',
     features: ['Keypad selection', 'Hot-water system', 'Product storage', 'Cutlery compartment', 'Independent water storage'],
     specs: {
       'Dimensions': 'On enquiry',

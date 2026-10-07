@@ -3,7 +3,7 @@
 // The home page (index.html), style.css, site.js and quiz.js are edited by hand.
 import fs from 'node:fs';
 import path from 'node:path';
-import { ROOT, BASE_URL, TODAY, pages, writePage, slot, crumbs, ctaBand, esc } from './lib.mjs';
+import { ROOT, BASE_URL, TODAY, pages, writePage, slot, photo, PHOTOS, crumbs, ctaBand, esc } from './lib.mjs';
 import { buildProducts } from './products.mjs';
 import { POSTS } from './posts.mjs';
 
@@ -17,7 +17,7 @@ function blogIndex() {
   const [first, ...rest] = POSTS;
   const card = (p, root, feature) => `
     <a class="post-card reveal ${feature ? 'feature' : ''}" href="${root}blog/${p.slug}/">
-      ${slot({ ratio: feature ? '16x9' : '16x9', hint: p.hero, file: `${root}images/blog/${p.slug}.jpg` })}
+      ${p.heroPhoto ? photo(root, { p: PHOTOS[p.heroPhoto], ratio: '16x9', pos: '50% 35%', sizes: '(max-width: 640px) 100vw, 33vw' }) : slot({ ratio: '16x9', hint: p.hero, file: `${root}images/blog/${p.slug}.jpg` })}
       <div class="body">
         <small>${esc(p.category)} · ${readMins(p.body)} min read</small>
         ${feature ? `<h2>${esc(p.title)}</h2>` : `<h3>${esc(p.title)}</h3>`}
@@ -64,6 +64,7 @@ function article(p) {
     pagePath: `blog/${p.slug}/`,
     active: 'blog',
     ogType: 'article',
+    image: p.heroPhoto ? PHOTOS[p.heroPhoto].file + '.jpg' : undefined,
     title: p.metaTitle,
     description: p.description,
     jsonld: [crumb.ld, {
@@ -85,7 +86,7 @@ function article(p) {
   </div>
 </section>
 <div class="wrap">
-  <div class="article-media reveal">${slot({ ratio: '16x9', hint: p.hero, file: `${root}images/blog/${p.slug}.jpg` })}</div>
+  <div class="article-media reveal">${p.heroPhoto ? photo(root, { p: PHOTOS[p.heroPhoto], ratio: '16x9', pos: '50% 35%', eager: true, sizes: '(max-width: 1100px) 100vw, 1100px', caption: 'Right Away Ramen' }) : slot({ ratio: '16x9', hint: p.hero, file: `${root}images/blog/${p.slug}.jpg` })}</div>
   ${toc.length > 3 ? `<nav class="toc reveal" aria-label="In this article"><b>In this article</b><ol>${toc.map(([, id, t]) => `<li><a href="#${id}">${t}</a></li>`).join('')}</ol></nav>` : ''}
   <article class="prose">
     ${p.body.replaceAll('{{root}}', root)}

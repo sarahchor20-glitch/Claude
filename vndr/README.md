@@ -28,6 +28,8 @@ node vndr/_build/build.mjs
 The `_build` folder isn't published by GitHub Pages.
 
 ## Adding photos and videos
+Real photos already on the site live in `images/ramen/` (Right Away Ramen machine). To add more, put a resized JPG (and a `-sm.jpg` version about 640px wide) in `images/`, register it in `PHOTOS` in `_build/lib.mjs`, and use `photo(root, { p: PHOTOS.yourKey })` in a template. Then rebuild.
+
 Every grey striped box with a camera or play icon is a placeholder. In the page's HTML, each one has a comment just above it, like this:
 
 ```html
