@@ -670,6 +670,21 @@
   .faq-answer ul { margin: 0.6rem 0 0 1.1rem; }
   .faq-answer li { margin-top: 0.3rem; }
 
+  /* Listing-ready note in the Photography section */
+  .listing-aside { margin-top: 2rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+  .listing-text { font-size: 0.82rem; color: var(--ink-soft); margin: 0.6rem 0 1.2rem; max-width: 30ch; }
+  .listing-shots { position: relative; height: 230px; max-width: 240px; }
+  .listing-shots img {
+    position: absolute;
+    width: 125px;
+    border-radius: 14px;
+    box-shadow: 0 14px 28px -14px rgba(31,37,35,0.45);
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+  .listing-shots img:first-child { left: 0; top: 18px; transform: rotate(-4deg); }
+  .listing-shots img:last-child { left: 100px; top: 0; height: 215px; width: auto; object-fit: cover; transform: rotate(3deg); }
+
   /* ── PROCESS ── */
   .process {
     padding: clamp(3.2rem, 6vw, 4.5rem) 0;
@@ -1044,6 +1059,14 @@
         <p class="chapter-num">03</p>
         <h3 class="chapter-title">Photography</h3>
         <p class="chapter-desc">Edited stills for your socials, website and listings: interiors, details and the moments in between.</p>
+        <div class="listing-aside">
+          <p class="eyebrow">Listing-ready</p>
+          <p class="listing-text">Use your photos straight on Airbnb and other booking platforms.</p>
+          <div class="listing-shots">
+            <img src="images/listing-2.jpg" alt="Airbnb listing cover photo of a bedroom opening onto a pool" loading="lazy">
+            <img src="images/listing-1.jpg" alt="Airbnb photo tour showing living room photos" loading="lazy">
+          </div>
+        </div>
       </div>
       <div class="grid grid-photo">
         <div class="frame portrait reveal"><img src="images/photo-1.jpg" alt="Wooden jetty over turquoise lagoon with palm-lined beach" loading="lazy"></div>
