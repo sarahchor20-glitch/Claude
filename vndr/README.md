@@ -9,6 +9,7 @@
 | `/vndr/blog/` + 6 articles | `blog/**/index.html` | Generated |
 | `/vndr/quiz/` + 2 quizzes | `quiz/**/index.html` | Generated |
 | `/vndr/sitemap.xml` | `sitemap.xml` | Generated |
+| `/vndr/dashboard/` | `dashboard/` | Edited by hand (operator dashboard prototype) |
 
 Shared files: `style.css` (all styles), `site.js` (machine list, illustrations, calculator, menu), `quiz.js` (quiz questions and scoring).
 
@@ -47,3 +48,10 @@ Generated pages are overwritten on rebuild, so either put media into the templat
 - Replace `ENQUIRY_EMAIL` in `index.html`.
 - Add `priceCurrency` + `offers` to the Product structured data in `_build/products.mjs` once the currency is confirmed.
 - Submit `sitemap.xml` in Google Search Console.
+
+## Operator dashboard (prototype)
+`dashboard/` is a clickable prototype of the customer dashboard: login, overview, machines, sales, locations map and restock plan. It runs on **sample data** generated in `dashboard/data.js`. Any login opens the demo account.
+
+To make it real, replace `dashboard/data.js` with a version that has the same functions (`signIn`, `signOut`, `currentUser`, `machines`, `transactions`, `markRestocked`) but loads from a backend (e.g. Supabase for accounts + database) and from each machine's monitoring platform or manual entry. The screens in `dashboard/app.js` don't need to change.
+
+The map uses Leaflet with CARTO's dark map tiles. Check CARTO's usage terms before going live with real customers, or swap in another tile provider in `drawMap()`.

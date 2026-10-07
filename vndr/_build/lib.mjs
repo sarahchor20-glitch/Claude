@@ -71,7 +71,8 @@ const NAV = [
   ['how', 'How it works', 'index.html#how'],
   ['blog', 'Blog', 'blog/'],
   ['quiz', 'Quiz', 'quiz/'],
-  ['about', 'About', 'index.html#about']
+  ['about', 'About', 'index.html#about'],
+  ['login', 'Log in', 'dashboard/']
 ];
 
 /** Write one page. `pagePath` is a folder like 'machines/ramen-vending-machine/'. */
@@ -134,6 +135,7 @@ ${typeof body === 'function' ? body(root) : body}
         <a href="${root}blog/">Blog</a>
         <a href="${root}quiz/">Quizzes</a>
         <a href="${root}index.html#enquire">Enquire</a>
+        <a href="${root}dashboard/">Operator login</a>
       </nav>
       <span>© <span id="year"></span> VNDR. Vending empire, simplified.</span>
     </div>

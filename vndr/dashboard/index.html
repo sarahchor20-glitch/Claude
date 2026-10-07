@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operator Dashboard — VNDR</title>
+<meta name="description" content="Log in to see your VNDR machines, sales, stock and locations.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0b0c'/%3E%3Cpath d='M8 9l8 15 8-15' fill='none' stroke='%23c8ff2e' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dash">
+
+<!-- ============ LOGIN ============ -->
+<div class="login" id="login" hidden>
+  <div class="login-art" id="loginArt">
+    <a href="../index.html" class="logo">VNDR<b>.</b></a>
+    <div class="login-machines" id="loginMachines"></div>
+    <p>Every machine, every sale, every location. One dashboard.</p>
+  </div>
+  <div class="login-form">
+    <a href="../index.html" class="back">← Back to vndr</a>
+    <h1>Operator login</h1>
+    <p>See your machines, sales, stock and locations in one place.</p>
+    <form id="loginForm" novalidate>
+      <div class="f"><label for="lEmail">Email</label><input id="lEmail" type="email" autocomplete="username" placeholder="you@example.com"></div>
+      <div class="f"><label for="lPass">Password</label><input id="lPass" type="password" autocomplete="current-password" placeholder="••••••••"></div>
+      <button class="btn btn-primary" type="submit">Log in <span class="arrow">→</span></button>
+    </form>
+    <div class="or">or</div>
+    <button class="btn btn-ghost" id="demoBtn" type="button">Explore the demo dashboard</button>
+    <p class="demo-note"><strong>Preview:</strong> customer accounts aren't live yet. Logging in opens a demo account with sample machines and sales data.</p>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div class="app" id="app" hidden>
+  <aside class="side" aria-label="Dashboard">
+    <a href="../index.html" class="logo">VNDR<b>.</b><small>OPERATOR</small></a>
+    <nav id="sideNav" style="display:contents"></nav>
+    <div class="side-foot">
+      <span class="avatar" id="avatar">AJ</span>
+      <div><span id="userName">Alex Jordan</span><small id="userEmail">demo@vndr.com</small></div>
+      <button class="signout" id="signout" title="Sign out" aria-label="Sign out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4"/></svg></button>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="demo-bar"><b>DEMO</b> You're viewing sample data. Numbers, machines and locations are illustrative. <a href="../index.html#enquire">Get your first machine →</a></div>
+    <div class="mobile-top"><a href="../index.html" class="logo">VNDR<b>.</b></a><button class="signout" id="signout2" aria-label="Sign out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4"/></svg></button></div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<div class="tip" id="tip" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="../site.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
