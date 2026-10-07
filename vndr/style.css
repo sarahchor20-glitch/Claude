@@ -667,6 +667,7 @@ a.m-card { color: inherit; }
 .q-progress { height: 4px; border-radius: 4px; background: var(--card-2); overflow: hidden; margin-bottom: 32px; }
 .q-progress i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .4s ease; }
 .q-count { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+.q-title:focus { outline: none; }
 .q-title { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 28px; }
 .q-opts { display: grid; gap: 10px; }
 .q-opt { text-align: left; width: 100%; padding: 18px 20px; border-radius: 14px; border: 1px solid var(--line-strong); background: var(--bg); cursor: pointer; font-size: 16px; display: flex; gap: 14px; align-items: center; transition: border-color .2s, background .2s, transform .15s; }
