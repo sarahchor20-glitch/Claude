@@ -207,16 +207,16 @@ h3 { font-size: clamp(22px, 2.2vw, 28px); letter-spacing: -0.02em; line-height: 
 .head .lede { max-width: 40ch; }
 
 /* ---------- Who ---------- */
-.who-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-.who {
-  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 28px 24px; display: flex; flex-direction: column; gap: 16px; min-height: 260px;
-}
-.who .n { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
-.who h3 { font-size: 22px; }
-.who q { color: var(--ink-soft); font-size: 15px; margin-top: auto; quotes: "“" "”"; }
-@media (max-width: 1100px) { .who-grid { grid-template-columns: repeat(2, 1fr); } .who:last-child { grid-column: span 2; } }
-@media (max-width: 560px) { .who-grid { grid-template-columns: 1fr; } .who:last-child { grid-column: auto; } .who { min-height: 0; } }
+.who-sec { padding: 0 0 clamp(64px, 8vw, 96px); }
+.who-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px 24px; flex-wrap: wrap; margin-bottom: 28px; }
+.who-top h2 { font-size: clamp(28px, 3.4vw, 44px); }
+.who-top p { color: var(--ink-soft); max-width: 40ch; }
+.who-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.who { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 8px; align-content: start; }
+.who h3 { font-size: 17px; letter-spacing: -0.01em; }
+.who q { color: var(--ink-soft); font-size: 14px; line-height: 1.45; quotes: "“" "”"; }
+@media (max-width: 1000px) { .who-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .who:last-child { grid-column: span 2; } }
+@media (max-width: 520px) { .who-grid { grid-template-columns: 1fr; } .who:last-child { grid-column: auto; } }
 
 /* ---------- Machines ---------- */
 .machines { background: var(--bg-2); }
