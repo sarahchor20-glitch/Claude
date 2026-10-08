@@ -86,7 +86,14 @@ function article(p) {
   </div>
 </section>
 <div class="wrap">
-  <div class="article-media reveal">${p.heroPhoto ? photo(root, { p: PHOTOS[p.heroPhoto], ratio: '16x9', pos: '50% 35%', eager: true, sizes: '(max-width: 1100px) 100vw, 1100px', caption: 'Right Away Ramen' }) : slot({ ratio: '16x9', hint: p.hero, file: `${root}images/blog/${p.slug}.jpg` })}</div>
+  ${(() => {
+    if (!p.heroPhoto) return `<div class="article-media reveal">${slot({ ratio: '16x9', hint: p.hero, file: `${root}images/blog/${p.slug}.jpg` })}</div>`;
+    const ph = PHOTOS[p.heroPhoto];
+    // Small source images (under 900px wide) are shown square at near their real size so they stay sharp
+    return ph.w < 900
+      ? `<div class="article-media small reveal">${photo(root, { p: ph, ratio: '1x1', eager: true, sizes: '520px', caption: ph.cap })}</div>`
+      : `<div class="article-media reveal">${photo(root, { p: ph, ratio: '16x9', pos: '50% 35%', eager: true, sizes: '(max-width: 1100px) 100vw, 1100px', caption: ph.cap })}</div>`;
+  })()}
   ${toc.length > 3 ? `<nav class="toc reveal" aria-label="In this article"><b>In this article</b><ol>${toc.map(([, id, t]) => `<li><a href="#${id}">${t}</a></li>`).join('')}</ol></nav>` : ''}
   <article class="prose">
     ${p.body.replaceAll('{{root}}', root)}

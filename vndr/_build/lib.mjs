@@ -33,16 +33,31 @@ export function slot({ type = 'photo', ratio = '4x3', hint, file }) {
 
 // Real photos (files in images/). Add new ones here, then use photo({ p: PHOTOS.key, ... }).
 export const PHOTOS = {
-  front:   { file: 'images/ramen/rar-machine-front', w: 1227, h: 1600, alt: 'Ramen vending machine wrapped for Right Away Ramen, with a touchscreen, product window and hot-water station' },
-  shelves: { file: 'images/ramen/rar-shelves', w: 1200, h: 1600, alt: 'Shelves of cup noodles inside a ramen vending machine, next to the hot-water station' },
-  collect: { file: 'images/ramen/rar-collect', w: 1200, h: 1600, alt: '"Collect Noodz Here" pick-up door on a Right Away Ramen vending machine' },
-  water:   { file: 'images/ramen/rar-hot-water', w: 1200, h: 1600, alt: 'Hot-water station on a ramen vending machine with a noodle cup ready to fill' }
+  front:   { file: 'images/ramen/rar-machine-front', w: 1227, h: 1600, alt: 'Ramen vending machine wrapped for Right Away Ramen, with a touchscreen, product window and hot-water station', cap: 'Right Away Ramen' },
+  shelves: { file: 'images/ramen/rar-shelves', w: 1200, h: 1600, alt: 'Shelves of cup noodles inside a ramen vending machine, next to the hot-water station', cap: 'Right Away Ramen' },
+  collect: { file: 'images/ramen/rar-collect', w: 1200, h: 1600, alt: '"Collect Noodz Here" pick-up door on a Right Away Ramen vending machine', cap: 'Right Away Ramen' },
+  water:   { file: 'images/ramen/rar-hot-water', w: 1200, h: 1600, alt: 'Hot-water station on a ramen vending machine with a noodle cup ready to fill', cap: 'Right Away Ramen' },
+  ramenBlack: { file: 'images/machines/ramen-touchscreen-black', w: 1122, h: 1402, sw: 640, alt: 'Black VNDR touchscreen ramen vending machine stocked with cup noodles, with a hot-water station and card reader' },
+  snackFront: { file: 'images/machines/snack-drink-front', w: 1122, h: 1402, sw: 640, alt: 'VNDR snack and drink vending machine stocked with chips, chocolate bars, soft drinks and energy drinks' },
+  snackHall: { file: 'images/machines/snack-drink-hallway', w: 1091, h: 1441, sw: 640, alt: 'Black VNDR snack and drink vending machine in a school hallway' },
+  darkFront: { file: 'images/machines/dark-front', w: 506, h: 507, sw: 506, alt: 'Black VNDR vending machine lit up in a dark room' },
+  darkEdge: { file: 'images/machines/dark-edge', w: 508, h: 507, sw: 508, alt: 'Close-up of the LED-lit glass edge of a VNDR vending machine' },
+  darkAngle: { file: 'images/machines/dark-angle', w: 506, h: 507, sw: 506, alt: 'Black VNDR vending machine at an angle in a dark room' },
+  darkPanel: { file: 'images/machines/dark-panel', w: 506, h: 508, sw: 506, alt: 'VNDR logo on the pick-up panel of a black vending machine' },
+  darkPair: { file: 'images/machines/dark-pair', w: 508, h: 508, sw: 508, alt: 'Two black VNDR vending machines side by side' },
+  darkKeypad: { file: 'images/machines/dark-keypad', w: 506, h: 508, sw: 506, alt: 'Close-up of a VNDR vending machine keypad and display' },
+  studioFront: { file: 'images/machines/studio-front', w: 506, h: 507, sw: 506, alt: 'Black VNDR vending machine on a white background, front view' },
+  studioAngle: { file: 'images/machines/studio-angle', w: 508, h: 507, sw: 508, alt: 'Black VNDR vending machine on a white background, side angle' },
+  studioThree: { file: 'images/machines/studio-three-quarter', w: 506, h: 507, sw: 506, alt: 'Black VNDR vending machine on a white background, three-quarter view' },
+  studioLow: { file: 'images/machines/studio-low', w: 506, h: 508, sw: 506, alt: 'Black VNDR vending machine on a white background, low angle' },
+  studioFront2: { file: 'images/machines/studio-front-2', w: 508, h: 508, sw: 508, alt: 'Black VNDR vending machine on a white background, straight on' },
+  studioClose: { file: 'images/machines/studio-close', w: 506, h: 508, sw: 506, alt: 'Close-up of a black VNDR vending machine on a white background' }
 };
 
 /** A real photo. `root` is the page's path back to the site root; `pos` crops (object-position); `zoom` magnifies a detail. */
 export function photo(root, { p, ratio = '4x5', pos = '50% 50%', zoom, caption, eager = false, sizes = '(max-width: 900px) 100vw, 50vw', cls = '' }) {
   const style = `object-position:${pos}` + (zoom ? `;transform:scale(${zoom});transform-origin:${pos}` : '');
-  return `<figure class="media r-${ratio} photo ${cls}"><img src="${root}${p.file}.jpg" srcset="${root}${p.file}-sm.jpg 640w, ${root}${p.file}.jpg ${p.w}w" sizes="${sizes}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" style="${style}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">${caption ? `<figcaption class="cap">${esc(caption)}</figcaption>` : ''}</figure>`;
+  return `<figure class="media r-${ratio} photo ${cls}"><img src="${root}${p.file}.jpg" srcset="${root}${p.file}-sm.jpg ${p.sw || 640}w, ${root}${p.file}.jpg ${p.w}w" sizes="${sizes}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" style="${style}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">${caption ? `<figcaption class="cap">${esc(caption)}</figcaption>` : ''}</figure>`;
 }
 
 export const art = (kind, uid, extra = '') => `<figure class="media art ${extra}">${machineSVG(kind, uid)}</figure>`;

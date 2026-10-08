@@ -11,6 +11,7 @@ export const POSTS = [
     date: '2026-10-07',
     lede: 'Vending can be a great business. It can also be the wrong one for you. Here\'s an honest look at both sides, so you can decide with your eyes open.',
     hero: 'Person standing beside a vending machine, thinking it over',
+    heroPhoto: 'darkFront',
     body: `
 <p>Vending gets talked about as "passive income" a lot. The truth is more useful than the hype: vending is a <strong>real, physical business</strong> that can run without you being there every day. But it still needs good decisions, a bit of hustle and regular attention.</p>
 <p>If that sounds like your kind of thing, keep reading. If you'd rather find out in two minutes, take our quiz: <a href="{{root}}quiz/is-vending-right-for-you/">Is vending right for you?</a></p>
@@ -73,6 +74,7 @@ export const POSTS = [
     date: '2026-10-07',
     lede: 'Machine → location → stock → launch → scale. Here\'s each step in plain English, with what to do and what to avoid.',
     hero: 'Brand-new machine being installed',
+    heroPhoto: 'darkPair',
     body: `
 <p>Starting a vending business isn't complicated. It just has a few steps that need to happen in the right order. Here's the path we walk every VNDR customer through.</p>
 
@@ -198,6 +200,7 @@ export const POSTS = [
     date: '2026-10-07',
     lede: 'The machine isn\'t the business. The location is. Here\'s how to find good ones, and how to get a "yes".',
     hero: 'Busy hallway with a vending machine in a prime spot',
+    heroPhoto: 'snackHall',
     body: `
 <p>Two identical machines can have completely different results depending on where they're placed. That's why location is the single most important decision you'll make.</p>
 
@@ -266,7 +269,7 @@ export const POSTS = [
     date: '2026-10-07',
     lede: 'Stock for the people at the location, not for yourself. Here\'s how to build a range that sells, and keep improving it.',
     hero: 'Neatly stocked vending machine, full front view',
-    heroPhoto: 'shelves',
+    heroPhoto: 'snackFront',
     body: `
 <p>The right products can turn an average location into a good one. The wrong ones leave money sitting in the spirals.</p>
 
@@ -324,6 +327,7 @@ export const POSTS = [
     date: '2026-10-07',
     lede: 'The machine is the biggest cost, but it isn\'t the only one. Here\'s every cost to plan for, so there are no surprises.',
     hero: 'Calculator, notebook and a vending machine brochure',
+    heroPhoto: 'darkKeypad',
     body: `
 <p>Being clear about costs upfront is the best way to make good decisions, and to avoid a nasty surprise three months in.</p>
 

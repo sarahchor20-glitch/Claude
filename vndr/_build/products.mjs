@@ -19,6 +19,27 @@ const I = {
 };
 
 const specRow = (k, v) => `<tr><th scope="row">${esc(k)}</th>${v.map(x => `<td class="${x === 'On enquiry' ? 'tbc' : ''}">${esc(x)}</td>`).join('')}</tr>`;
+// Photo gallery: main photo + clickable thumbnails (first key is shown first)
+function gallery(root, keys) {
+  const first = PHOTOS[keys[0]];
+  return `<div id="pdMain">${photo(root, { p: first, ratio: '4x5', eager: true, caption: first.cap })}</div>
+        <div class="pd-thumbs" role="group" aria-label="Photos" style="grid-template-columns:repeat(${keys.length}, minmax(0, 1fr))">
+          ${keys.map((k, i) => { const p = PHOTOS[k]; return `<button type="button" class="pd-thumb" aria-pressed="${i === 0}" aria-label="Show photo: ${esc(p.alt)}" data-photo="${k}"><img src="${root}${p.file}-sm.jpg" alt="" loading="lazy" width="${p.sw || 640}" height="${Math.round((p.sw || 640) * p.h / p.w)}"></button>`; }).join('')}
+        </div>`;
+}
+const galleryScript = (root, keys) => `<script>
+// Gallery: clicking a thumbnail swaps the main photo
+const PH = ${JSON.stringify(Object.fromEntries(keys.map(k => [k, PHOTOS[k]])))};
+document.querySelectorAll('.pd-thumb').forEach(b => b.addEventListener('click', () => {
+  const p = PH[b.dataset.photo], fig = document.querySelector('#pdMain figure'), img = fig.querySelector('img');
+  img.srcset = '${root}' + p.file + '-sm.jpg ' + (p.sw || 640) + 'w, ${root}' + p.file + '.jpg ' + p.w + 'w';
+  img.src = '${root}' + p.file + '.jpg'; img.alt = p.alt;
+  let cap = fig.querySelector('figcaption');
+  if (p.cap) { if (!cap) { cap = document.createElement('figcaption'); cap.className = 'cap'; fig.appendChild(cap); } cap.textContent = p.cap; } else if (cap) cap.remove();
+  document.querySelectorAll('.pd-thumb').forEach(x => x.setAttribute('aria-pressed', x === b));
+}));
+</script>`;
+
 const productLd = (m, slug, desc) => ({
   '@context': 'https://schema.org', '@type': 'Product',
   name: m.name, description: desc, brand: { '@type': 'Brand', name: 'VNDR' }, category: 'Vending machines',
@@ -29,6 +50,7 @@ const productLd = (m, slug, desc) => ({
 /* =====================================================================
    RAMEN — flagship page (both models)
    ===================================================================== */
+const RAMEN_GALLERY = ['ramenBlack', 'front', 'shelves', 'collect', 'water'];
 function ramenPage() {
   const T = machine('ramen'), K = machine('ramen-keypad');
   const slug = 'ramen-vending-machine';
@@ -64,13 +86,7 @@ function ramenPage() {
     ${crumb.html}
     <div class="pd-grid">
       <div class="pd-gallery reveal">
-        <div id="pdMain">${photo(root, { p: PHOTOS.front, ratio: '4x5', eager: true, caption: 'Wrapped for Right Away Ramen' })}</div>
-        <div class="pd-thumbs" role="group" aria-label="Photos">
-          ${[['front', 'Right Away Ramen'], ['shelves', 'Right Away Ramen'], ['collect', 'Right Away Ramen'], ['water', 'Right Away Ramen']].map(([k, cap], i) => {
-            const p = PHOTOS[k];
-            return `<button type="button" class="pd-thumb" aria-pressed="${i === 0}" aria-label="Show photo: ${esc(p.alt)}" data-photo="${k}"><img src="${root}${p.file}-sm.jpg" alt="" loading="lazy" width="640" height="${Math.round(640 * p.h / p.w)}"></button>`;
-          }).join('')}
-        </div>
+        ${gallery(root, RAMEN_GALLERY)}
       </div>
       <div class="pd-info">
         <div class="eyebrow reveal">Specialty vending · 2 models</div>
@@ -390,18 +406,11 @@ function ramenPage() {
   </div>
 </section>
 `,
-    image: PHOTOS.front.file + '.jpg',
+    image: PHOTOS.ramenBlack.file + '.jpg',
     scripts: root => `<script>
 window.addEventListener('DOMContentLoaded', () => mountCalc(document.getElementById('calc'), { machine: 5997, sales: 12, price: 6.5, cost: 2.2, comm: 10 }));
-// Hero gallery: clicking a thumbnail swaps the main photo
-const PH = ${JSON.stringify(PHOTOS)};
-document.querySelectorAll('.pd-thumb').forEach(b => b.addEventListener('click', () => {
-  const p = PH[b.dataset.photo], img = document.querySelector('#pdMain img');
-  img.srcset = '${root}' + p.file + '-sm.jpg 640w, ${root}' + p.file + '.jpg ' + p.w + 'w';
-  img.src = '${root}' + p.file + '.jpg'; img.alt = p.alt;
-  document.querySelectorAll('.pd-thumb').forEach(x => x.setAttribute('aria-pressed', x === b));
-}));
-</script>`
+</script>
+${galleryScript(root, RAMEN_GALLERY)}`
   });
 }
 
@@ -411,6 +420,8 @@ document.querySelectorAll('.pd-thumb').forEach(b => b.addEventListener('click', 
 const STANDARD = [
   {
     id: 'snack-chilled', slug: 'refrigerated-snack-vending-machine',
+    photos: ['snackFront', 'snackHall', 'studioThree', 'darkKeypad', 'studioClose'],
+    rangePhoto: 'snackFront',
     title: 'Refrigerated Snack Vending Machine | VNDR',
     h1: 'Refrigerated snack vending machine.',
     lede: 'Chilled snacks, fresh food and cold drinks in one machine. A bigger product range means more reasons to buy.',
@@ -436,6 +447,8 @@ const STANDARD = [
   },
   {
     id: 'snack', slug: 'snack-vending-machine',
+    photos: ['snackHall', 'studioFront', 'studioLow', 'darkEdge', 'darkKeypad'],
+    rangePhoto: 'snackFront',
     title: 'Snack Vending Machine (Non-Refrigerated) | VNDR',
     h1: 'Snack vending machine.',
     lede: 'The classic. Shelf-stable snacks, no refrigeration to run, and the easiest way to start a vending business.',
@@ -461,6 +474,8 @@ const STANDARD = [
   },
   {
     id: 'drinks', slug: 'drink-vending-machine',
+    photos: ['studioFront2', 'studioAngle', 'darkFront', 'darkAngle', 'darkPanel'],
+    rangePhoto: 'studioClose',
     title: 'Drink Vending Machine | VNDR',
     h1: 'Drink vending machine.',
     lede: 'Cold drinks, high turnover, simple to stock. A refrigerated machine for water, soft drinks, energy drinks and protein shakes.',
@@ -522,17 +537,19 @@ function standardPage(p) {
     title: p.title,
     description: desc,
     jsonld: [crumb.ld, faq.ld, productLd(m, p.slug, m.desc)],
+    image: p.photos ? PHOTOS[p.photos[0]].file + '.jpg' : undefined,
+    scripts: root => p.photos ? galleryScript(root, p.photos) : '',
     body: root => `
 <section class="pd-hero">
   <div class="wrap">
     ${crumb.html}
     <div class="pd-grid">
       <div class="pd-gallery reveal">
-        ${art(m.art, 'hero')}
+        ${p.photos ? gallery(root, p.photos) : `${art(m.art, 'hero')}
         <div class="pd-thumbs">
           ${['Machine in a real location', 'Front close-up', 'Product display', 'Payment / interface'].map((h, i) =>
             slot({ ratio: '1x1', hint: h, file: `${root}images/${p.slug}/${i + 1}.jpg` })).join('')}
-        </div>
+        </div>`}
       </div>
       <div class="pd-info">
         <div class="eyebrow reveal">${esc(cat.name)} vending · ${esc(m.tag)}</div>
@@ -582,7 +599,7 @@ function standardPage(p) {
         <ul class="feat-list reveal" style="grid-template-columns:1fr">${p.stock.map(x => `<li>${icon('<path d="M5 12l5 5 9-10"/>')}${esc(x)}</li>`).join('')}</ul>
         <p class="reveal muted">Start with a tight range, then let sales data guide what stays. <a href="${root}blog/what-to-sell-in-a-vending-machine/" style="color:var(--ink);text-decoration:underline">Read our stocking guide →</a></p>
       </div>
-      <div class="reveal">${slot({ ratio: '4x5', hint: 'Product range photo', file: `${root}images/${p.slug}/range.jpg` })}</div>
+      <div class="reveal">${p.rangePhoto ? photo(root, { p: PHOTOS[p.rangePhoto], ratio: '4x5', pos: '50% 35%' }) : slot({ ratio: '4x5', hint: 'Product range photo', file: `${root}images/${p.slug}/range.jpg` })}</div>
     </div>
   </div>
 </section>

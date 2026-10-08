@@ -35,8 +35,8 @@ const MACHINES = [
       'Shipping': 'On enquiry'
     },
     art: 'ramen',
-    photo: 'images/ramen/vndr-ramen-machine',   // product photo (relative to site root); shown instead of the illustration on cards
-    photoAlt: 'VNDR touchscreen ramen vending machine stocked with cup noodles'
+    photo: 'images/machines/ramen-touchscreen-black',   // product photo (relative to site root); shown instead of the illustration on cards
+    photoAlt: 'Black VNDR touchscreen ramen vending machine stocked with cup noodles'
   },
   {
     id: 'ramen-keypad',
@@ -78,7 +78,9 @@ const MACHINES = [
       'Ideal locations': 'Offices, hospitals, gyms, universities, warehouses',
       'Shipping': 'On enquiry'
     },
-    art: 'snack-chilled'
+    art: 'snack-chilled',
+    photo: 'images/machines/snack-drink-front',
+    photoAlt: 'VNDR snack and drink vending machine stocked with snacks and cold drinks'
   },
   {
     id: 'snack',
@@ -99,7 +101,9 @@ const MACHINES = [
       'Ideal locations': 'Offices, warehouses, apartment buildings, shopping centres, entertainment venues',
       'Shipping': 'On enquiry'
     },
-    art: 'snack'
+    art: 'snack',
+    photo: 'images/machines/snack-drink-hallway',
+    photoAlt: 'Black VNDR snack vending machine in a hallway'
   },
   {
     id: 'drinks',
@@ -120,7 +124,9 @@ const MACHINES = [
       'Ideal locations': 'Gyms, sports centres, warehouses, transport hubs, universities',
       'Shipping': 'On enquiry'
     },
-    art: 'drinks'
+    art: 'drinks',
+    photo: 'images/machines/studio-front-2',
+    photoAlt: 'Black VNDR vending machine with chilled drinks, front view'
   },
   {
     id: 'coffee',
