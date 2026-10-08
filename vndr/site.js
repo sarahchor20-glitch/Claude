@@ -35,8 +35,8 @@ const MACHINES = [
       'Shipping': 'On enquiry'
     },
     art: 'ramen',
-    photo: 'images/ramen/rar-machine-front',   // real photo (relative to site root); shown instead of the illustration on cards
-    photoAlt: 'Touchscreen ramen vending machine wrapped for Right Away Ramen'
+    photo: 'images/ramen/vndr-ramen-machine',   // product photo (relative to site root); shown instead of the illustration on cards
+    photoAlt: 'VNDR touchscreen ramen vending machine stocked with cup noodles'
   },
   {
     id: 'ramen-keypad',

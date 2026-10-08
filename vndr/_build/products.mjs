@@ -680,7 +680,7 @@ function cataloguePage() {
     <div class="machine-grid">
       ${list.map(m => `
       <a class="m-card reveal" href="${root}${m.page}">
-        <div class="m-visual ${m.photo ? 'has-photo' : ''}"><span class="m-tag ${m.tag === 'Specialty' ? 'hot' : ''}">${esc(m.tag)}</span>${m.photo ? `<img src="${root}${m.photo}-sm.jpg" alt="${esc(m.photoAlt)}" loading="lazy" width="640" height="835">` : machineSVG(m.art, 'cat-' + m.id)}</div>
+        <div class="m-visual ${m.photo ? 'has-photo' : ''}"><span class="m-tag ${m.tag === 'Specialty' ? 'hot' : ''}">${esc(m.tag)}</span>${m.photo ? `<img src="${root}${m.photo}-sm.jpg" alt="${esc(m.photoAlt)}" loading="lazy" width="640" height="800">` : machineSVG(m.art, 'cat-' + m.id)}</div>
         <div class="m-body">
           <h3>${esc(m.name)}</h3>
           <p>${esc(m.short)}</p>
