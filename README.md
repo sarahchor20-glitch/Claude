@@ -2,7 +2,7 @@
 
 Portfolio site for By Sez: UGC for travel, hospitality and lifestyle brands.
 
-Live site (once GitHub Pages is enabled): https://sarahchor20-glitch.github.io/bysez/
+Live site (once GitHub Pages is enabled): https://sarahchor20-glitch.github.io/BySez/
 
 ## Editing
 - All content is in `index.html`. Edit it on GitHub (pencil icon) and commit; the site updates in about a minute.
